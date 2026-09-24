@@ -262,8 +262,8 @@ html:not(.js) .prod-mas{display:none}
 @media (max-width:400px){.cab .env{gap:.6rem}.cab .btn{padding:.6rem .7rem}.cab .btn .t{display:none}.btn-presu{padding:.5rem .6rem}}
 /* ---------- movimiento: solo transform y opacidad ---------- */
 .anima .prod-plato:not(.visto),.anima .zonas-nav .d:not(.visto){opacity:0}
-.prod-plato.visto{animation:rueda .75s var(--curva) both}
-.zonas-nav .d.visto{animation:rueda .6s var(--curva) both}
+.prod-plato.visto{animation:rueda .75s var(--curva) backwards}
+.zonas-nav .d.visto{animation:rueda .6s var(--curva) backwards}
 @keyframes rueda{from{opacity:0;transform:translateX(-46px) rotate(-220deg)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:no-preference){
   .ficha-p .etiqueta{animation:balanceo 1.6s cubic-bezier(.3,.6,.3,1) .2s both}

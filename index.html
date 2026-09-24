@@ -108,8 +108,9 @@ h2{margin:0;font:900 clamp(2.1rem,5.2vw,4.4rem)/.92 var(--display);font-stretch:
 .discos{--esc:1;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:1.6rem 1.6rem;margin:3.2rem 0 0;padding:0 0 1.2rem;list-style:none;border-bottom:4px solid var(--tinta)}
 .discos li{display:flex;flex-direction:column;align-items:center;gap:.7rem}
 .discos a{display:flex;flex-direction:column;align-items:center;gap:.7rem;text-decoration:none}
-.discos .cara{display:block;width:calc(var(--d) * var(--esc));border-radius:50%;transition:transform .35s var(--curva)}
-.discos a:hover .cara,.discos a:focus-visible .cara{transform:rotate(-12deg) translateY(-4px)}
+.discos .cara{display:block;width:calc(var(--d) * var(--esc));border-radius:50%}
+.discos .cara svg{transition:transform .35s var(--curva)}
+.discos a:hover .cara svg,.discos a:focus-visible .cara svg{transform:rotate(-12deg) translateY(-4px)}
 .discos a:focus-visible{outline:none}
 .discos a:focus-visible .cara{outline:3px solid var(--rojo);outline-offset:4px}
 .discos svg{display:block;width:100%;height:auto;overflow:visible}
@@ -361,6 +362,14 @@ html:not(.js) .paso{display:none}
 .aviso-flot[hidden]{display:none}
 .aviso-flot button{background:var(--rojo);color:#fff;border:0;border-radius:.3rem;padding:.45rem .7rem;font:700 .88rem/1 var(--texto);cursor:pointer}
 @media (max-width:400px){.cab .env{gap:.6rem}.cab .btn{padding:.6rem .7rem}.cab .btn .t{display:none}.btn-presu{padding:.5rem .6rem}}
+/* Rodar y colgar al llegar: animaciones CSS (solo transform y opacidad) que arranca un IntersectionObserver.
+   Sin GSAP a propósito: en el Safari del iPhone, GSAP + una transición CSS sobre el mismo transform dejaba
+   los discos congelados en su estado inicial (girados y desplazados). */
+.al-llegar .discos .cara:not(.visto),.al-llegar .resena:not(.visto){opacity:0}
+.discos .cara.visto{animation:rueda .9s var(--curva) calc(var(--i,0) * 80ms) backwards}
+.resena.visto{animation:colgar 1.4s cubic-bezier(.3,.6,.3,1) calc(var(--i,0) * 200ms) backwards}
+@keyframes rueda{from{opacity:0;transform:translateX(-140px) rotate(-260deg)}}
+@keyframes colgar{0%{opacity:0;transform:translateY(-24px) rotate(-32deg)}25%{opacity:1}45%{transform:rotate(calc(var(--r,-3deg) + 12deg))}65%{transform:rotate(calc(var(--r,-3deg) - 5deg))}82%{transform:rotate(calc(var(--r,-3deg) + 2deg))}}
 /* Carga de discos: solo si hay movimiento y GSAP. Si GSAP no llega en 2,5 s, los discos aparecen puestos. */
 .js-carga .lado .pl,.js-carga .lado .cl{visibility:hidden}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -832,8 +841,6 @@ addEventListener('DOMContentLoaded', () => {
   const miles = (v) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   const coma = (v, d = 1) => v.toFixed(d).replace('.', ',');
   const WA = 'https://wa.me/34618050806?text=';
-  // Lo que no se ve al entrar espera a que el navegador quede libre: la portada manda en la carga.
-  const luego = (fn) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 300));
 
   /* 1 · Portada: los discos entran por la barra, del grande al pequeño; cada golpe asienta el conjunto. */
   if (anima) {
@@ -851,20 +858,23 @@ addEventListener('DOMContentLoaded', () => {
          .from('.portada h1', { y: 28, opacity: 0, duration: .6, ease: 'power3.out' }, .35)
          .from('.portada .lead, .portada .acciones, .portada .prueba', { y: 16, opacity: 0, duration: .5, stagger: .08, ease: 'power2.out' }, .6);
 
-    // 2 y 5 · Animaciones al llegar a su sección, sin plugin de scroll: un IntersectionObserver arranca
-    //         un tween que nace pausado en su estado inicial (así no hay parpadeo al entrar).
-    const alVer = (disparador, tween) => {
-      const io = new IntersectionObserver((es) => { if (es[0].isIntersecting) { io.disconnect(); tween.play(); } }, { rootMargin: '0px 0px -25% 0px' });
+  } else raiz.classList.remove('js-carga');
+
+  // 2 y 5 · Los discos ruedan hasta su sitio y las reseñas se cuelgan al llegar a su sección.
+  //         Animaciones CSS («al-llegar»), no GSAP: así no chocan con la transición de :hover (iPhone).
+  if (!quieto && 'IntersectionObserver' in window) {
+    raiz.classList.add('al-llegar');
+    const alVer = (disparador, els) => {
+      els.forEach((el, k) => el.style.setProperty('--i', k));
+      const io = new IntersectionObserver((es) => {
+        if (es[0].isIntersecting) { io.disconnect(); els.forEach((el) => el.classList.add('visto')); }
+      }, { rootMargin: '0px 0px -20% 0px' });
       io.observe(document.querySelector(disparador));
     };
-    luego(() => {
-      // Los discos del catálogo entran rodando hasta su sitio.
-      alVer('.discos', gsap.from('.discos .cara', { x: -140, rotation: -260, opacity: 0, duration: .9, ease: 'power3.out', stagger: .08, paused: true }));
-      // Las reseñas se cuelgan de las máquinas del showroom, y la de Miguel de su fachada.
-      alVer('.escena', gsap.from('.tags .resena', { rotation: -32, y: -24, opacity: 0, duration: 1.3, ease: 'elastic.out(1,.45)', stagger: .2, paused: true }));
-      alVer('.contacto', gsap.from('.fachada .resena', { rotation: 28, opacity: 0, duration: 1.3, ease: 'elastic.out(1,.45)', paused: true }));
-    });
-  } else raiz.classList.remove('js-carga');
+    alVer('.discos', $$('.discos .cara'));
+    alVer('.escena', $$('.tags .resena'));
+    alVer('.contacto', $$('.fachada .resena'));
+  }
 
   /* 3 · Escaparate: un plato cada vez; gira solo, se para al tocarlo. */
   const vit = $('.vitrina');
