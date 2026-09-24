@@ -773,7 +773,6 @@ html:not(.js) .paso{display:none}
 
 <script type="application/json" id="datos-maquinas">[{"id":"smith","n":"Máquina Smith","c":"Smith","precio":1362,"kg":215,"a":1340,"b":2266},{"id":"vsquat","n":"Sentadilla en V (V-Squat)","c":"V-Squat","precio":1300,"kg":242,"a":2430,"b":1450},{"id":"prensa45","n":"Prensa de Piernas a 45°","c":"Prensa 45°","precio":1386,"kg":215,"a":1780,"b":2060},{"id":"hack","n":"Sentadilla Hack Lineal","c":"Hack lineal","precio":1460,"kg":371,"a":2693,"b":1844},{"id":"rack","n":"Rack de Potencia Olímpico con Dominadas","c":"Rack","precio":990,"kg":165,"a":1785,"b":1365},{"id":"jalon-iso","n":"Jalón al Pecho ISO","c":"Jalón ISO","precio":990,"kg":145,"a":1650,"b":1100},{"id":"hombros-iso","n":"Press de Hombros ISO","c":"Hombros ISO","precio":990,"kg":139,"a":1500,"b":1250},{"id":"pecho-iso","n":"Press de Pecho Inclinado ISO","c":"Pecho incl. ISO","precio":990,"kg":139,"a":1435,"b":1666},{"id":"jalon-polea","n":"Jalón en polea alta","c":"Jalón polea","precio":990,"kg":152,"a":1110,"b":1740},{"id":"remo-bajo","n":"Remo bajo","c":"Remo bajo","precio":990,"kg":163,"a":1320,"b":1250},{"id":"jalon-remo","n":"Jalón al Pecho y Remo Largo","c":"Jalón y remo","precio":1395,"kg":175,"a":1370,"b":840},{"id":"multi-hip","n":"Multi Cadera (Multi Hip)","c":"Multi Hip","precio":1287,"kg":195,"a":1650,"b":990},{"id":"curl-femoral","n":"Curl Femoral de Pie","c":"Curl femoral","precio":990,"kg":110,"a":1360,"b":1060},{"id":"ext-piernas","n":"Extensión de Piernas ISO","c":"Ext. piernas","precio":990,"kg":126,"a":1433,"b":1477},{"id":"aductores","n":"Máquina de Aductores","c":"Aductores","precio":1260,"kg":139,"a":1690,"b":730},{"id":"patada","n":"Patada de glúteo","c":"Patada glúteo","precio":990,"kg":135,"a":1115,"b":1330},{"id":"banco-plano","n":"Banco plano","c":"Banco plano","precio":386,"kg":55,"a":1270,"b":470},{"id":"banco-ajustable","n":"Banco de Pesas Ajustable","c":"Banco ajust.","precio":547,"kg":48,"a":1430,"b":600},{"id":"banco-militar","n":"Banco Militar Olímpico","c":"Banco militar","precio":920,"kg":88,"a":1763,"b":1210},{"id":"soporte-discos","n":"Soporte para Discos","c":"Discos","precio":245,"kg":37,"a":710,"b":610},{"id":"dominadas","n":"Estación de Dominadas y Fondos","c":"Dominadas","precio":687,"kg":114,"a":1220,"b":1070},{"id":"cinta","n":"Cinta Comercial LED","c":"Cinta","precio":1143,"kg":203,"a":2100,"b":960},{"id":"cinta-tft","n":"Cinta Comercial TFT con Pantalla","c":"Cinta TFT","precio":1950,"kg":260,"a":2300,"b":1100}]</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script>
 addEventListener('DOMContentLoaded', () => {
   const raiz = document.documentElement;
@@ -784,7 +783,6 @@ addEventListener('DOMContentLoaded', () => {
   const miles = (v) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   const coma = (v, d = 1) => v.toFixed(d).replace('.', ',');
   const WA = 'https://wa.me/34618050806?text=';
-  if (anima) gsap.registerPlugin(ScrollTrigger);
   // Lo que no se ve al entrar espera a que el navegador quede libre: la portada manda en la carga.
   const luego = (fn) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 300));
 
@@ -804,21 +802,18 @@ addEventListener('DOMContentLoaded', () => {
          .from('.portada h1', { y: 28, opacity: 0, duration: .6, ease: 'power3.out' }, .35)
          .from('.portada .lead, .portada .acciones, .portada .prueba', { y: 16, opacity: 0, duration: .5, stagger: .08, ease: 'power2.out' }, .6);
 
+    // 2 y 5 · Animaciones al llegar a su sección, sin plugin de scroll: un IntersectionObserver arranca
+    //         un tween que nace pausado en su estado inicial (así no hay parpadeo al entrar).
+    const alVer = (disparador, tween) => {
+      const io = new IntersectionObserver((es) => { if (es[0].isIntersecting) { io.disconnect(); tween.play(); } }, { rootMargin: '0px 0px -25% 0px' });
+      io.observe(document.querySelector(disparador));
+    };
     luego(() => {
-    // 2 · Los discos del catálogo entran rodando hasta su sitio.
-    gsap.from('.discos .cara', {
-      x: -140, rotation: -260, opacity: 0, duration: .9, ease: 'power3.out', stagger: .08,
-      scrollTrigger: { trigger: '.discos', start: 'top 80%' }
-    });
-    // 5 · Las reseñas se cuelgan de las máquinas del showroom (y la de Miguel, de su fachada).
-    gsap.from('.tags .resena', {
-      rotation: -32, y: -24, opacity: 0, duration: 1.3, ease: 'elastic.out(1,.45)', stagger: .2,
-      scrollTrigger: { trigger: '.escena', start: 'top 60%' }
-    });
-    gsap.from('.fachada .resena', {
-      rotation: 28, opacity: 0, duration: 1.3, ease: 'elastic.out(1,.45)',
-      scrollTrigger: { trigger: '.contacto', start: 'top 60%' }
-    });
+      // Los discos del catálogo entran rodando hasta su sitio.
+      alVer('.discos', gsap.from('.discos .cara', { x: -140, rotation: -260, opacity: 0, duration: .9, ease: 'power3.out', stagger: .08, paused: true }));
+      // Las reseñas se cuelgan de las máquinas del showroom, y la de Miguel de su fachada.
+      alVer('.escena', gsap.from('.tags .resena', { rotation: -32, y: -24, opacity: 0, duration: 1.3, ease: 'elastic.out(1,.45)', stagger: .2, paused: true }));
+      alVer('.contacto', gsap.from('.fachada .resena', { rotation: 28, opacity: 0, duration: 1.3, ease: 'elastic.out(1,.45)', paused: true }));
     });
   } else raiz.classList.remove('js-carga');
 
