@@ -19,6 +19,8 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:6rem}
 body{margin:0;background:var(--cemento);color:var(--tinta);font:400 1.0625rem/1.55 var(--texto);-webkit-font-smoothing:antialiased}
+/* Nada que espere su animación (girado o desplazado) puede ensanchar la página en el móvil. */
+main{overflow-x:clip}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 button{font:inherit;color:inherit}
@@ -257,6 +259,7 @@ html:not(.js) .prod-mas{display:none}
   .etiqueta{min-width:7.6rem;padding:1.1rem .8rem .6rem}
   .etiqueta b{font-size:1.9rem}
 }
+@media (max-width:400px){.cab .env{gap:.6rem}.cab .btn{padding:.6rem .7rem}.cab .btn .t{display:none}.btn-presu{padding:.5rem .6rem}}
 /* ---------- movimiento: solo transform y opacidad ---------- */
 .anima .prod-plato:not(.visto),.anima .zonas-nav .d:not(.visto){opacity:0}
 .prod-plato.visto{animation:rueda .75s var(--curva) both}
