@@ -108,7 +108,10 @@ h2{margin:0;font:900 clamp(2.1rem,5.2vw,4.4rem)/.92 var(--display);font-stretch:
 .discos{--esc:1;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:1.6rem 1.6rem;margin:3.2rem 0 0;padding:0 0 1.2rem;list-style:none;border-bottom:4px solid var(--tinta)}
 .discos li{display:flex;flex-direction:column;align-items:center;gap:.7rem}
 .discos a{display:flex;flex-direction:column;align-items:center;gap:.7rem;text-decoration:none}
-.discos .cara{display:block;width:calc(var(--d) * var(--esc));border-radius:50%}
+.discos .cara{position:relative;display:block;width:calc(var(--d) * var(--esc));border-radius:50%}
+/* sombra sobre el papel: fuera del disco para que no gire con él al rodar */
+.discos .cara::before{content:"";position:absolute;inset:4% -1% -6% 2%;border-radius:50%;background:radial-gradient(closest-side,rgb(46 26 16 / .36) 74%,rgb(46 26 16 / 0))}
+.discos .giro{position:relative;display:block}
 .discos .cara svg{transition:transform .35s var(--curva)}
 .discos a:hover .cara svg,.discos a:focus-visible .cara svg{transform:rotate(-12deg) translateY(-4px)}
 .discos a:focus-visible{outline:none}
@@ -366,9 +369,11 @@ html:not(.js) .paso{display:none}
    Sin GSAP a propósito: en el Safari del iPhone, GSAP + una transición CSS sobre el mismo transform dejaba
    los discos congelados en su estado inicial (girados y desplazados). */
 .al-llegar .discos .cara:not(.visto),.al-llegar .resena:not(.visto){opacity:0}
-.discos .cara.visto{animation:rueda .9s var(--curva) calc(var(--i,0) * 80ms) backwards}
+.discos .cara.visto .giro{animation:rueda .9s var(--curva) calc(var(--i,0) * 80ms) backwards}
+.discos .cara.visto::before{animation:sombra .9s var(--curva) calc(var(--i,0) * 80ms) backwards}
 .resena.visto{animation:colgar 1.4s cubic-bezier(.3,.6,.3,1) calc(var(--i,0) * 200ms) backwards}
 @keyframes rueda{from{opacity:0;transform:translateX(-140px) rotate(-260deg)}}
+@keyframes sombra{from{opacity:0;transform:translateX(-140px)}}
 @keyframes colgar{0%{opacity:0;transform:translateY(-24px) rotate(-32deg)}25%{opacity:1}45%{transform:rotate(calc(var(--r,-3deg) + 12deg))}65%{transform:rotate(calc(var(--r,-3deg) - 5deg))}82%{transform:rotate(calc(var(--r,-3deg) + 2deg))}}
 /* Carga de discos: solo si hay movimiento y GSAP. Si GSAP no llega en 2,5 s, los discos aparecen puestos. */
 .js-carga .lado .pl,.js-carga .lado .cl{visibility:hidden}
@@ -404,8 +409,11 @@ html:not(.js) .paso{display:none}
     <!-- aros para el texto impreso de los discos (catálogo) y del plato (escaparate) -->
     <path id="aro" d="M-92 0a92 92 0 1 1 184 0a92 92 0 1 1-184 0" fill="none"/>
     <path id="aro-p" d="M-99 0a99 99 0 1 1 198 0a99 99 0 1 1-198 0" fill="none"/>
+    <!-- la máquina de cada disco no pisa el aro de acero de la cara renderizada -->
+    <clipPath id="buje"><circle r="42.8"/></clipPath>
   </defs>
-  <!-- un disco de caucho visto de frente: el gesto de la web -->
+  <!-- un disco de caucho visto de frente: el gesto de la web. Dibujo plano de respaldo: encima va la cara
+       renderizada (img/pesa-cara.webp, v2-fuente/render), que se pide después de la carga -->
   <symbol id="disco" viewBox="-110 -110 220 220">
     <circle r="108" fill="#141212"/>
     <circle r="104" fill="none" stroke="#2c2727" stroke-width="3"/>
@@ -490,60 +498,60 @@ html:not(.js) .paso{display:none}
     </div>
     <ul class="discos">
       <li><a href="categoria/musculacion/" aria-label="Musculación: 95 máquinas">
-        <span class="cara" style="--d:20.68rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
+        <span class="cara" style="--d:20.68rem"><span class="giro"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><image data-href="img/pesa-cara.webp" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">MUSCULACIÓN · 95 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
-          <image href="img/th-remo-bajo.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+          <image href="img/th-remo-bajo.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" clip-path="url(#buje)" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">95</text>
-          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">MUSCULACIÓN</tspan></text></svg></span>
+          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">MUSCULACIÓN</tspan></text></svg></span></span>
         <span class="nom">Musculación<br><small>95 máquinas →</small></span></a></li>
       <li><a href="categoria/maquinaria-carga-de-discos/" aria-label="Carga de discos: 51 máquinas">
-        <span class="cara" style="--d:17.43rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
+        <span class="cara" style="--d:17.43rem"><span class="giro"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><image data-href="img/pesa-cara.webp" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">CARGA DE DISCOS · 51 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
-          <image href="img/th-hombros-iso.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+          <image href="img/th-hombros-iso.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" clip-path="url(#buje)" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">51</text>
-          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="60">CARGA DE</tspan><tspan x="0" y="75">DISCOS</tspan></text></svg></span>
+          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="61.5">CARGA DE</tspan><tspan x="0" y="75.5">DISCOS</tspan></text></svg></span></span>
         <span class="nom">Carga de discos<br><small>51 máquinas →</small></span></a></li>
       <li><a href="categoria/maquinaria-de-aislamiento-y-gluteo/" aria-label="Aislamiento y glúteo: 25 máquinas">
-        <span class="cara" style="--d:14.75rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
+        <span class="cara" style="--d:14.75rem"><span class="giro"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><image data-href="img/pesa-cara.webp" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">AISLAMIENTO Y GLÚTEO · 25 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
-          <image href="img/th-vsquat.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+          <image href="img/th-vsquat.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" clip-path="url(#buje)" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">25</text>
-          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="60">AISLAMIENTO</tspan><tspan x="0" y="75">Y GLÚTEO</tspan></text></svg></span>
+          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="61.5">AISLAMIENTO</tspan><tspan x="0" y="75.5">Y GLÚTEO</tspan></text></svg></span></span>
         <span class="nom">Aislamiento y glúteo<br><small>25 máquinas →</small></span></a></li>
       <li><a href="categoria/equipamiento-de-peso-libre-y-racks/" aria-label="Peso libre y racks: 23 productos">
-        <span class="cara" style="--d:14.49rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
+        <span class="cara" style="--d:14.49rem"><span class="giro"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><image data-href="img/pesa-cara.webp" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">PESO LIBRE Y RACKS · 23 PRODUCTOS · WORLD FITNESS CLUB ·</textPath></text>
-          <image href="img/th-dominadas.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+          <image href="img/th-dominadas.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" clip-path="url(#buje)" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">23</text>
-          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="60">PESO LIBRE</tspan><tspan x="0" y="75">Y RACKS</tspan></text></svg></span>
+          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="61.5">PESO LIBRE</tspan><tspan x="0" y="75.5">Y RACKS</tspan></text></svg></span></span>
         <span class="nom">Peso libre y racks<br><small>23 productos →</small></span></a></li>
       <li><a href="categoria/accesorios-y-entrenamiento-funcional/" aria-label="Accesorios: 21 productos">
-        <span class="cara" style="--d:14.23rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
+        <span class="cara" style="--d:14.23rem"><span class="giro"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><image data-href="img/pesa-cara.webp" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">ACCESORIOS · 21 PRODUCTOS · WORLD FITNESS CLUB ·</textPath></text>
-          <image href="img/th-soporte-discos.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+          <image href="img/th-soporte-discos.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" clip-path="url(#buje)" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">21</text>
-          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">ACCESORIOS</tspan></text></svg></span>
+          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">ACCESORIOS</tspan></text></svg></span></span>
         <span class="nom">Accesorios<br><small>21 productos →</small></span></a></li>
       <li><a href="categoria/cardio/" aria-label="Cardio: 21 máquinas">
-        <span class="cara" style="--d:14.23rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
+        <span class="cara" style="--d:14.23rem"><span class="giro"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><image data-href="img/pesa-cara.webp" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">CARDIO · 21 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
-          <image href="img/th-cinta.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+          <image href="img/th-cinta.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" clip-path="url(#buje)" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">21</text>
-          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">CARDIO</tspan></text></svg></span>
+          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">CARDIO</tspan></text></svg></span></span>
         <span class="nom">Cardio<br><small>21 máquinas →</small></span></a></li>
       <li><a href="categoria/funcional/" aria-label="Funcional: 11 máquinas">
-        <span class="cara" style="--d:12.65rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
+        <span class="cara" style="--d:12.65rem"><span class="giro"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><image data-href="img/pesa-cara.webp" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">FUNCIONAL · 11 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
-          <image href="img/th-ext-piernas.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+          <image href="img/th-ext-piernas.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" clip-path="url(#buje)" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">11</text>
-          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">FUNCIONAL</tspan></text></svg></span>
+          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">FUNCIONAL</tspan></text></svg></span></span>
         <span class="nom">Funcional<br><small>11 máquinas →</small></span></a></li>
       <li><a href="categoria/maquinas-selectorizadas/" aria-label="Selectorizadas: 5 máquinas">
-        <span class="cara" style="--d:11.30rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
+        <span class="cara" style="--d:11.30rem"><span class="giro"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><image data-href="img/pesa-cara.webp" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">SELECTORIZADAS · 5 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
-          <image href="img/th-jalon-remo.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+          <image href="img/th-jalon-remo.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" clip-path="url(#buje)" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">5</text>
-          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="13" fill="#fff"><tspan x="0" y="66">SELECTORIZADAS</tspan></text></svg></span>
+          <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="13" fill="#fff"><tspan x="0" y="66">SELECTORIZADAS</tspan></text></svg></span></span>
         <span class="nom">Selectorizadas<br><small>5 máquinas →</small></span></a></li>
     </ul>
     <p class="nota">Recuento de worldfitnessclub.es a 24-sep-2026. Una máquina puede estar en dos zonas: por eso los discos suman más de 163.</p>
@@ -732,8 +740,7 @@ html:not(.js) .paso{display:none}
           <div class="ck"><b id="r-kg">0 kg</b><span>de máquina</span></div>
         </div>
         <svg id="carga-mini" viewBox="0 0 300 70" aria-hidden="true">
-          <rect x="4" y="32" width="292" height="6" rx="3" fill="#8f8983"/>
-          <rect x="112" y="27" width="10" height="16" rx="2" fill="#5a5450"/><rect x="178" y="27" width="10" height="16" rx="2" fill="#5a5450"/>
+          <image data-href="img/pesa-mini-barra.webp" x="0" y="26" width="300" height="18"/>
           <g id="mini-discos"></g>
         </svg>
         <p class="aviso" id="aviso"></p>
@@ -870,6 +877,12 @@ addEventListener('DOMContentLoaded', () => {
     alVer('.escena', $$('.tags .resena'));
     alVer('.contacto', $$('.fachada .resena'));
   }
+  // Las caras renderizadas de los discos (44 KB) se piden al acercarse a su sección, como una imagen lazy:
+  // no compiten con la portada. Pedirlas en «load» no basta: Lighthouse simula esa petición al principio
+  // y la portada perdía 0,2 s de FCP. Hasta entonces (o sin JS) se ve el disco dibujado, con el mismo trazado.
+  const caras = () => $$('.discos image[data-href]').forEach((im) => im.setAttribute('href', im.dataset.href));
+  if ('IntersectionObserver' in window) new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { caras(); o.disconnect(); } }, { rootMargin: '300px 0px' }).observe($('.discos'));
+  else caras();
 
   /* 3 · Escaparate: un plato cada vez; gira solo, se para al tocarlo. */
   const vit = $('.vitrina');
@@ -970,7 +983,7 @@ addEventListener('DOMContentLoaded', () => {
   const vista = () => (sala().ejemplo ? EJEMPLO : sala().n);
   const svg = $('#plano-svg'), rL = $('#largo'), rA = $('#ancho'), enviar = $('#enviar-sala'), chip = $('#chip-ejemplo'), extra = $('#grupo-extra');
   rL.value = sala().largo; rA.value = sala().ancho;
-  let antes = new Map(), discosMini = 0, pintado = false, catalogoPedido = false;
+  let antes = new Map(), pintado = false, catalogoPedido = false;
 
   // Las máquinas que llegan desde la tienda traen sus medidas y su precio en datos/catalogo.json.
   function asegura() {
@@ -1085,18 +1098,25 @@ addEventListener('DOMContentLoaded', () => {
     }).join('');
   }
 
-  // La sala se carga como una barra: un disco por máquina, repartidos a los dos lados.
+  // La sala se carga como una barra olímpica: un disco por máquina, de los topes hacia fuera y alternando rojo
+  // y negro. Discos renderizados (v2-fuente/render): los negros son los de la portada; los rojos, los mismos en
+  // caucho rojo. [imagen, alto y grueso del disco en su render]: cada render deja 14 u de margen alrededor.
+  const PLATOS = [['r1', 230, 38], ['p2', 196, 38], ['r3', 150, 32], ['p4', 104, 23], ['r4', 104, 23], ['p4', 104, 23]];
+  const ALTO = [52, 46, 40, 34, 28, 24];
+  const GRUESO = ALTO.map((a, j) => PLATOS[j][2] * a / PLATOS[j][1]);
+  const DESDE = GRUESO.map((_, j) => GRUESO.slice(0, j).reduce((s, v) => s + v + .4, .3));  // distancia al tope
   function cargaMini(n, sinAnim) {
-    const g = $('#mini-discos'), alto = [52, 46, 40, 34, 28, 24], k = Math.min(n, 12);
-    let h = '';
-    for (let i = 0; i < k; i++) {
-      const lado = i % 2 ? 1 : -1, j = Math.floor(i / 2), a = alto[j];
-      const x = lado < 0 ? 100 - j * 13 : 190 + j * 13;
-      h += `<rect data-i="${i}" x="${x}" y="${35 - a / 2}" width="10" height="${a}" rx="3" fill="${j % 2 ? '#2b2626' : '#D8231C'}"/>`;
+    const g = $('#mini-discos'), k = Math.min(n, 12), barra = $('#carga-mini image[data-href]');
+    // la barra se pide al pintar la sección por primera vez (cerca de verla), no al cargar la página
+    if (barra) { barra.setAttribute('href', barra.dataset.href); barra.removeAttribute('data-href'); }
+    while (g.childElementCount > k) g.lastElementChild.remove();
+    for (let i = g.childElementCount; i < k; i++) {
+      const der = i % 2 === 1, j = Math.floor(i / 2), a = ALTO[j], [img, H, T] = PLATOS[j], s = a / H;
+      const w = (T + 28) * s, x = (der ? 241 + DESDE[j] : 59 - DESDE[j] - GRUESO[j]) - 14 * s;
+      const espejo = der ? ` transform="matrix(-1 0 0 1 ${(2 * x + w).toFixed(2)} 0)"` : '';
+      g.insertAdjacentHTML('beforeend', `<g><image href="img/pesa-${img}.webp" x="${x.toFixed(2)}" y="${(35 - a / 2 - 14 * s).toFixed(2)}" width="${w.toFixed(2)}" height="${((H + 28) * s).toFixed(2)}"${espejo}/></g>`);
+      if (anima && !sinAnim) gsap.from(g.lastElementChild, { x: der ? 60 : -60, opacity: 0, duration: .4, ease: 'power3.in' });
     }
-    g.innerHTML = h;
-    if (anima && !sinAnim && k > discosMini) $$('rect', g).slice(discosMini).forEach((r) => gsap.from(r, { x: (+r.getAttribute('x') < 150 ? -60 : 60), opacity: 0, duration: .4, ease: 'power3.in' }));
-    discosMini = k;
   }
 
   // Tocar el ejemplo lo convierte en tuyo; desde el escaparate o la tienda se empieza de cero.

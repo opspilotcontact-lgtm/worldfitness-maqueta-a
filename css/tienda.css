@@ -83,8 +83,10 @@ h2{font-size:clamp(2rem,4.6vw,3.6rem)}
 .tienda-cab h1{font-size:clamp(2.6rem,7vw,5.6rem);text-shadow:1px 1px 0 var(--rojo-hondo),2px 2px 0 var(--rojo-hondo),3px 3px 0 var(--rojo-hondo),4px 4px 0 var(--rojo-hondo)}
 .tienda-cab .intro{color:#fff;max-width:44rem}
 .cab-zona{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem 3rem;align-items:end}
-.cab-zona .disco-grande{width:clamp(9rem,20vw,15rem)}
-.cab-zona .disco-grande svg{display:block;width:100%;height:auto}
+.cab-zona .disco-grande{position:relative;width:clamp(9rem,20vw,15rem)}
+/* sombra sobre el rojo, como la de las piezas de la portada */
+.cab-zona .disco-grande::before{content:"";position:absolute;inset:4% -1% -6% 2%;border-radius:50%;background:radial-gradient(closest-side,rgb(60 0 0 / .45) 74%,rgb(60 0 0 / 0))}
+.cab-zona .disco-grande svg{position:relative;display:block;width:100%;height:auto}
 
 /* ---------- zonas como discos ---------- */
 .zonas-nav{background:var(--tinta);color:#fff;background-image:var(--motas);background-size:23px 19px,31px 29px,17px 23px}
