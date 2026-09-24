@@ -1,5 +1,8 @@
 # Propuesta de web · World Fitness Club (maqueta A)
 
-Propuesta de rediseño en revisión (OpsPilot, 24-sep-2026). No indexable. La web oficial sigue en https://worldfitnessclub.es/
+Propuesta de rediseño en revisión (OpsPilot). No indexable. La web oficial sigue en https://worldfitnessclub.es/
 
-Fotos: ficha de Google del gimnasio y catálogo de worldfitnessclub.es. Iconos: Lucide (ISC, ver LICENSE-iconos.txt). Fuentes: Anybody, Source Sans 3 y Fragment Mono (OFL).
+- `/` · v2 (24-sep-2026): escaparate giratorio con precios, «Monta tu sala» a escala con su catálogo y reseñas colgadas en el showroom.
+- `/v1/` · v1 (24-sep-2026, nota del fundador 8/10).
+
+Precios, pesos y medidas: catálogo de worldfitnessclub.es. Fotos: ficha de Google del showroom y renders de su catálogo. Iconos: Lucide (ISC, ver LICENSE-iconos.txt). Fuentes: Anybody, Source Sans 3 y Fragment Mono (OFL).

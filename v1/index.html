@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquinaria de gimnasio profesional en Puente Genil (Córdoba) · World Fitness Club</title>
+<meta name="description" content="Distribuidor de maquinaria de gimnasio con showroom en su propio gimnasio de Puente Genil, abierto 24 horas. Precio en cada máquina, IVA incluido. Transporte y montaje en toda España.">
+<meta name="robots" content="noindex">
+<!-- PROPUESTA A (24-sep-2026), noindex hasta publicar. Fotos: ficha de Google del gimnasio (subidas por
+     World Fitness Club) y catálogo de worldfitnessclub.es. Reseñas literales de Google, con nombre.
+     Datos de su web (showroom 800 m², precios orientativos, montaje en España): reales según el fundador, 24-sep. -->
+<meta name="theme-color" content="#D8231C">
+<link rel="icon" href="img/escudo.webp">
+<link rel="preload" href="fonts/anybody-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/escudo.webp" as="image" fetchpriority="high">
+<style>
+@font-face{font-family:'Anybody';font-weight:100 900;font-stretch:50% 150%;font-display:swap;src:url('fonts/anybody-var-latin.woff2') format('woff2-variations')}
+@font-face{font-family:'Source Sans 3';font-weight:200 900;font-display:swap;src:url('fonts/source-sans-3-var-latin.woff2') format('woff2-variations')}
+@font-face{font-family:'Fragment Mono';font-weight:400 900;font-display:swap;src:url('fonts/fragment-mono-latin.woff2') format('woff2')}
+
+:root{
+  --rojo:#D8231C;          /* rojo rack: entre el del escudo (#F90404) y el de sus racks en foto (#D42F1E) */
+  --rojo-hondo:#8E120D;    /* la extrusión del rótulo de su fachada */
+  --rojo-sombra:#B81A14;
+  --tinta:#141212;         /* el negro de sus paredes */
+  --tinta-2:#1E1A1A;
+  --acero:#9B9792;
+  --cemento:#ECEAE6;       /* su suelo claro */
+  --crema:#F6F2EC;         /* el relleno del escudo */
+  --display:'Anybody','Arial Narrow',Impact,sans-serif;
+  --texto:'Source Sans 3',system-ui,sans-serif;
+  --cifra:'Fragment Mono',ui-monospace,monospace;
+  --ew:clamp(210px,56vw,500px);   /* ancho del escudo: todo el hero cuelga de aquí */
+  --curva:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{margin:0;background:var(--cemento);color:var(--tinta);font:400 1.0625rem/1.55 var(--texto);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.env{width:min(100% - 2rem,76rem);margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ico{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- franja de propuesta y cabecera ---------- */
+.franja{margin:0;background:#000;color:#fff;font:500 .8rem/1.3 var(--texto);text-align:center;padding:.45rem 1rem}
+.cab{position:sticky;top:0;z-index:20;background:var(--tinta);color:#fff;border-bottom:3px solid var(--rojo)}
+.cab .env{display:flex;align-items:center;gap:1rem;min-height:3.75rem}
+.marca{display:flex;align-items:center;gap:.6rem;text-decoration:none;margin-right:auto}
+.marca img{width:46px;height:auto}
+.marca b{display:block;font:900 1.6rem/0.9 var(--display);font-stretch:60%;letter-spacing:.015em;color:var(--rojo);text-transform:uppercase;text-shadow:1px 1px 0 #000}
+.marca small{display:block;font:500 .62rem/1 var(--cifra);letter-spacing:.14em;color:#cfcac4;margin-top:.2rem}
+.nav{display:flex;gap:1.4rem;font:600 .95rem/1 var(--texto)}
+.nav a{text-decoration:none;color:#e9e5e0}
+.nav a:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--rojo);text-decoration-thickness:2px;text-underline-offset:6px}
+.btn{display:inline-flex;align-items:center;gap:.55rem;font:700 1rem/1 var(--texto);text-decoration:none;padding:.9rem 1.25rem;border-radius:.35rem;border:2px solid transparent;transition:transform .2s var(--curva),background-color .2s var(--curva)}
+.btn:hover{transform:translateY(-2px)}
+.btn-rojo{background:var(--rojo);color:#fff}
+.btn-rojo:hover{background:var(--rojo-sombra)}
+.btn-blanco{background:#fff;color:var(--tinta)}
+.btn-linea{border-color:currentColor;color:#fff}
+.btn-tinta{background:var(--tinta);color:#fff}
+.cab .btn{padding:.6rem .95rem;font-size:.92rem}
+
+/* ---------- 1 · portada: el escudo sostiene la barra ---------- */
+.portada{position:relative;background:var(--rojo);color:#fff;overflow:hidden;isolation:isolate;padding:1.4rem 0 4.5rem}
+.portada::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(120% 70% at 50% 18%,rgba(255,255,255,.10),transparent 60%),
+             radial-gradient(90% 60% at 50% 110%,rgba(0,0,0,.28),transparent 70%)}
+.rotulos{display:flex;justify-content:space-between;gap:1rem;font:500 .74rem/1.3 var(--cifra);letter-spacing:.14em;text-transform:uppercase;color:#ffe3df}
+.conjunto{position:relative;height:calc(var(--ew) * .76);margin:1.6rem 0 .6rem}
+.conjunto .escudo{position:absolute;left:50%;top:0;width:var(--ew);transform:translateX(-50%);z-index:2;filter:drop-shadow(0 10px 18px rgba(80,0,0,.35))}
+.lado{position:absolute;top:calc(var(--ew) * .2565);height:calc(var(--ew) * .501);z-index:1;overflow:visible}
+.lado.izq{left:0;width:calc(50% - var(--ew) * .2956)}   /* svg es reemplazado: con left+right ignora right; va con width */
+.lado.der{left:calc(50% + var(--ew) * .2936);width:calc(50% - var(--ew) * .2936);transform:scaleX(-1)}
+.portada h1{margin:0 auto;max-width:17ch;text-align:center;font:900 clamp(2.5rem,7vw,6rem)/.9 var(--display);font-stretch:58%;text-transform:uppercase;letter-spacing:.005em;
+  text-shadow:1px 1px 0 var(--rojo-hondo),2px 2px 0 var(--rojo-hondo),3px 3px 0 var(--rojo-hondo),4px 4px 0 var(--rojo-hondo),5px 5px 0 var(--rojo-hondo),6px 7px 14px rgba(60,0,0,.35)}
+.portada h1 em{font-style:normal;color:var(--tinta);text-shadow:1px 1px 0 #fff3,2px 2px 0 #0003}
+.portada .lead{max-width:40rem;margin:1.5rem auto 0;text-align:center;font-size:clamp(1.05rem,1.6vw,1.25rem);color:#fff}
+.acciones{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:1.8rem}
+.prueba{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.4rem;margin-top:1.6rem;font:500 .82rem/1.3 var(--cifra);letter-spacing:.06em;color:#ffe3df}
+.prueba span{display:inline-flex;align-items:center;gap:.4rem}
+.prueba .ico{width:1em;height:1em}
+.prueba .lleno{fill:#fff;stroke:none}
+
+/* el disco pequeño que marca cada sección: el gesto repetido */
+.kicker{display:inline-flex;align-items:center;gap:.6rem;margin:0 0 .9rem;font:500 .78rem/1 var(--cifra);letter-spacing:.16em;text-transform:uppercase}
+.kicker::before{content:"";width:1.05rem;height:1.05rem;border-radius:50%;flex:none;
+  background:radial-gradient(circle,var(--fondo-k,var(--cemento)) 0 22%,var(--acero) 23% 36%,var(--tinta) 37% 100%);box-shadow:inset 0 0 0 2px var(--rojo)}
+h2{margin:0;font:900 clamp(2.1rem,5.2vw,4.4rem)/.92 var(--display);font-stretch:60%;text-transform:uppercase;letter-spacing:.005em;text-wrap:balance}
+.intro{max-width:36rem;font-size:1.12rem;margin:1rem 0 0}
+
+/* ---------- 2 · catálogo: cada categoría es un disco ---------- */
+.catalogo{padding:5.5rem 0 5rem;
+  background-color:var(--cemento);
+  background-image:radial-gradient(circle at 20% 30%,#cfcac3 0 1px,transparent 1.6px),radial-gradient(circle at 70% 80%,#d9d5cf 0 1.2px,transparent 2px),radial-gradient(circle at 45% 60%,#c4beb6 0 .8px,transparent 1.4px);
+  background-size:23px 19px,31px 29px,17px 23px}
+.catalogo .cabeza{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem 3rem;align-items:end}
+.discos{--esc:1;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:1.2rem 1.6rem;margin:3.2rem 0 0;padding:0 0 1.2rem;list-style:none;border-bottom:4px solid var(--tinta)}
+.discos li{display:flex;flex-direction:column;align-items:center;gap:.7rem}
+.discos a{display:block;width:calc(var(--d) * var(--esc));text-decoration:none;border-radius:50%;transition:transform .35s var(--curva)}
+.discos a:hover,.discos a:focus-visible{transform:rotate(-14deg) translateY(-4px)}
+.discos a:focus-visible{outline:3px solid var(--rojo);outline-offset:4px}
+.discos svg{display:block;width:100%;height:auto;overflow:visible}
+.discos .nom{font:700 .95rem/1.15 var(--texto);text-align:center;max-width:12rem}
+.discos .nom small{display:block;font:500 .72rem/1.4 var(--cifra);letter-spacing:.08em;color:#5d5853;text-transform:uppercase}
+.fuente{margin:1rem 0 0;font:400 .8rem/1.4 var(--cifra);color:#5d5853}
+
+/* ---------- 3 · fichas: la chapa del bastidor ---------- */
+.fichas{background:var(--tinta);color:#fff;padding:5.5rem 0}
+.fichas .kicker{--fondo-k:var(--tinta);color:#e6e1db}
+.fichas .intro{color:#d8d3cd}
+.placas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem;margin:3rem 0 0;padding:0;list-style:none}
+.placa{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);background:var(--tinta-2);border:1px solid #3a3434;border-radius:.5rem;overflow:hidden}
+.placa figure{margin:0;background:#fff;display:grid;place-items:center;padding:1rem}
+.placa figure img{width:100%;max-width:300px;mix-blend-mode:multiply}
+.chapa{position:relative;padding:1.4rem 1.4rem 1.2rem;display:flex;flex-direction:column;gap:.9rem;
+  background:linear-gradient(135deg,#2a2525,#1b1818 60%,#231f1f)}
+.chapa::before,.chapa::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#d9d4ce,#6d6862);top:.6rem}
+.chapa::before{left:.6rem}.chapa::after{right:.6rem}
+.chapa h3{margin:0;font:800 1.45rem/1 var(--display);font-stretch:66%;text-transform:uppercase;letter-spacing:.01em}
+.chapa .cat{font:500 .7rem/1 var(--cifra);letter-spacing:.14em;text-transform:uppercase;color:#ff8a80}
+.chapa dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.35rem .9rem;font:400 .86rem/1.3 var(--cifra)}
+.chapa dt{color:#a9a39c;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;align-self:center}
+.chapa dd{margin:0;color:#fff}
+.chapa .precio{font:900 2rem/1 var(--display);font-stretch:70%;color:#fff}
+.chapa .precio small{font:500 .7rem/1 var(--cifra);letter-spacing:.08em;color:#a9a39c;margin-left:.35rem}
+.chapa .pie{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;margin-top:auto}
+.chapa .pie a{font:700 .9rem/1 var(--texto)}
+.chapa .pie .btn{padding:.65rem .9rem;font-size:.9rem}
+.placa:first-child{grid-column:1 / -1;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+.placa:first-child .chapa h3{font-size:clamp(1.7rem,3.4vw,2.6rem)}
+.placa:first-child .cita-ficha{font:700 1.15rem/1.35 var(--texto);color:#fff;margin:0;max-width:30rem}
+.placa:first-child .cita-ficha span{color:#ff8a80}
+.placa-falta{grid-template-columns:1fr;background:var(--rojo);border-color:var(--rojo)}
+.placa-falta .chapa{background:linear-gradient(135deg,var(--rojo),var(--rojo-sombra));justify-content:center}
+.placa-falta .cat{color:#ffe3df}
+.placa-falta h3{font-size:1.9rem}
+.placa-falta p{margin:0;max-width:26rem}
+.mas{margin:2.2rem 0 0;display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+
+/* ---------- 4 · la sala: el showroom es un gimnasio ---------- */
+.sala{color:#fff;background:var(--tinta);padding:0 0 4.5rem}
+.sala .foto{position:relative;display:block}
+.sala .foto img{width:100%;height:clamp(320px,52vw,720px);object-fit:cover;object-position:50% 70%}
+.sala .foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,18,0) 40%,rgba(20,18,18,.75) 75%,var(--tinta) 99%)}
+.sala>.env{position:relative;margin-top:clamp(-11rem,-14vw,-5rem)}
+.sala .kicker{--fondo-k:#222;color:#f1ece6}
+.sala h2{max-width:14ch}
+.dos{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.62fr);gap:2rem 3.5rem;align-items:center;margin:2.8rem 0 0}
+.rack{margin:0;transform:rotate(-1.5deg)}
+.rack img{aspect-ratio:4/5;object-fit:cover;object-position:50% 55%;border-radius:.3rem;box-shadow:0 18px 40px #0008;border:6px solid #fff}
+.rack figcaption{font:500 .7rem/1.3 var(--cifra);letter-spacing:.06em;color:#a9a39c;margin-top:.7rem;text-transform:uppercase}
+.cita-grande{margin:0}
+.cita-grande p{margin:0;max-width:19ch;font:800 clamp(2rem,5.4vw,4.6rem)/.98 var(--display);font-stretch:64%;text-transform:uppercase}
+.cita-grande p::before{content:"«";color:var(--rojo)}
+.cita-grande p::after{content:"»";color:var(--rojo)}
+.firma-cita{display:block;margin-top:.9rem;font:500 .8rem/1.3 var(--cifra);letter-spacing:.08em;color:#d8d3cd}
+.citas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem 2rem;margin:3rem 0 0;padding:1.6rem 0 0;border-top:1px solid #ffffff33}
+.citas blockquote{margin:0;font:600 1.12rem/1.35 var(--texto)}
+.citas blockquote p{margin:0}
+.citas blockquote p::before{content:"«"}
+.citas blockquote p::after{content:"»"}
+.datos{display:flex;flex-wrap:wrap;gap:1rem 2.8rem;margin:2.8rem 0 0}
+.datos div{display:flex;flex-direction:column;gap:.2rem}
+.datos b{font:900 clamp(2.4rem,5vw,3.6rem)/.9 var(--display);font-stretch:62%;color:#fff}
+.datos span{font:500 .75rem/1.3 var(--cifra);letter-spacing:.08em;text-transform:uppercase;color:#d8d3cd;max-width:14rem}
+.entrenar{margin:2.6rem 0 0;padding:1.1rem 1.3rem;border-left:4px solid var(--rojo);background:#ffffff10;max-width:40rem}
+.entrenar p{margin:0}
+
+/* ---------- 5 · cómo se equipa una sala ---------- */
+.proceso{padding:5.5rem 0;background:var(--crema)}
+.proceso .kicker{--fondo-k:var(--crema)}
+.pasos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem;margin:3rem 0 0;padding:0;list-style:none;counter-reset:paso}
+.pasos li{counter-increment:paso;display:flex;flex-direction:column;gap:.7rem}
+.pasos .num{position:relative;width:4.6rem;height:4.6rem;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle,var(--crema) 0 13%,var(--acero) 14% 22%,var(--tinta) 23% 100%);box-shadow:inset 0 0 0 4px var(--rojo),inset 0 0 0 7px var(--tinta)}
+.pasos .num::after{content:counter(paso);position:absolute;top:.35rem;font:900 1.05rem/1 var(--display);color:#fff}
+.pasos h3{margin:0;font:800 1.5rem/1 var(--display);font-stretch:66%;text-transform:uppercase}
+.pasos p{margin:0}
+.nota{font:400 .8rem/1.45 var(--cifra);color:#5d5853}
+.quien{margin:3.2rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--tinta);display:grid;grid-template-columns:auto 1fr;gap:1rem 2rem;align-items:baseline}
+.quien b{font:800 1.2rem/1 var(--display);font-stretch:66%;text-transform:uppercase}
+.quien p{margin:0;font-size:1.12rem}
+
+/* ---------- 6 · habla con Miguel: campo rojo con la silueta del escudo ---------- */
+.contacto{position:relative;background:var(--rojo);color:#fff;overflow:hidden;isolation:isolate;padding:5.5rem 0}
+.contacto::before{content:"";position:absolute;z-index:-1;width:min(120vw,1100px);aspect-ratio:499/328;right:-18%;top:50%;transform:translateY(-50%);
+  background:var(--rojo-sombra);-webkit-mask:url(img/escudo-silueta.webp) center/contain no-repeat;mask:url(img/escudo-silueta.webp) center/contain no-repeat;opacity:.9}
+.contacto .rejilla{display:grid;grid-template-columns:1.25fr .75fr;gap:3rem;align-items:center}
+.contacto .kicker{--fondo-k:var(--rojo);color:#fff}
+.contacto h2{font-size:clamp(2.6rem,7vw,6rem);text-shadow:1px 1px 0 var(--rojo-hondo),2px 2px 0 var(--rojo-hondo),3px 3px 0 var(--rojo-hondo),4px 4px 0 var(--rojo-hondo)}
+.contacto .intro{color:#fff}
+.telefono{display:inline-block;margin:1.4rem 0 0;font:900 clamp(2.4rem,6.4vw,5.2rem)/1 var(--display);font-stretch:70%;text-decoration:none;color:var(--tinta);letter-spacing:.01em}
+.telefono:hover{text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:8px}
+.contacto .acciones{justify-content:flex-start}
+.ficha-local{margin:2rem 0 0;display:grid;gap:.55rem;font-size:1.02rem}
+.ficha-local span{display:flex;gap:.6rem;align-items:flex-start}
+.ficha-local .ico{margin-top:.2rem}
+.fachada{margin:0;background:var(--tinta);padding:.55rem .55rem 0;border-radius:.4rem;box-shadow:0 20px 40px rgba(60,0,0,.35);transform:rotate(1.5deg)}
+.fachada img{border-radius:.2rem;aspect-ratio:4/5;object-fit:cover}
+.fachada figcaption{font:500 .72rem/1.3 var(--cifra);letter-spacing:.08em;color:#d8d3cd;padding:.6rem .2rem .7rem;text-transform:uppercase}
+
+/* ---------- pie ---------- */
+.pie-web{background:var(--tinta);color:#d8d3cd;padding:3.2rem 0 2.2rem;font-size:.95rem}
+.pie-web .env{display:grid;grid-template-columns:auto 1fr auto;gap:1.5rem 3rem;align-items:start}
+.pie-web img{width:84px}
+.pie-web b{color:#fff}
+.pie-web p{margin:0 0 .4rem}
+.pie-web .legal{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-size:.85rem}
+.pie-web .credito{grid-column:1/-1;border-top:1px solid #ffffff22;padding-top:1.2rem;font:400 .75rem/1.5 var(--cifra);color:#a9a39c}
+
+/* ---------- móvil ---------- */
+@media (max-width:900px){
+  .nav{display:none}
+  .catalogo .cabeza,.contacto .rejilla{grid-template-columns:1fr}
+  .placas{grid-template-columns:1fr}
+  .placa,.placa:first-child{grid-template-columns:1fr}
+  .placa figure img{max-width:260px}
+  .citas{grid-template-columns:1fr}
+  .dos{grid-template-columns:1fr}
+  .rack{max-width:16rem}
+  .pasos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fachada{max-width:22rem}
+  .pie-web .env{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .marca small{display:none}
+  .rotulos{font-size:.64rem;letter-spacing:.1em}
+  .discos{--esc:.5;gap:1rem .8rem}
+  .discos .nom{font-size:.85rem;max-width:9rem}
+  .pasos{grid-template-columns:1fr}
+  .quien{grid-template-columns:1fr}
+  .portada{padding-bottom:3.5rem}
+}
+/* Carga de discos: solo si hay movimiento y GSAP. Si GSAP no llega en 2,5 s, los discos aparecen puestos. */
+.js-carga .lado .pl,.js-carga .lado .cl{visibility:hidden}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<script>
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js-carga');
+    setTimeout(() => { if (!window.gsap) document.documentElement.classList.remove('js-carga'); }, 2500);
+  }
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":["ExerciseGym","SportingGoodsStore"],"name":"World Fitness Club",
+"description":"Gimnasio abierto 24 horas y distribuidor de maquinaria de gimnasio profesional con showroom en Puente Genil (Córdoba).",
+"url":"https://worldfitnessclub.es/","telephone":"+34618050806","email":"miguel.franco@worldfitnessclub.es",
+"address":{"@type":"PostalAddress","streetAddress":"C. Maestro Francisco Vila, 33","postalCode":"14500","addressLocality":"Puente Genil","addressRegion":"Córdoba","addressCountry":"ES"},
+"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"},
+"areaServed":{"@type":"Country","name":"España"}}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tel" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-camion" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+  <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-estrella" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></symbol>
+  <!-- un disco de caucho visto de frente: el gesto de la web -->
+  <symbol id="disco" viewBox="-110 -110 220 220">
+    <circle r="108" fill="#141212"/>
+    <circle r="104" fill="none" stroke="#2c2727" stroke-width="3"/>
+    <circle r="80" fill="none" stroke="#D8231C" stroke-width="3"/>
+    <path id="aro" d="M-92 0a92 92 0 1 1 184 0a92 92 0 1 1-184 0" fill="none"/>
+    <text font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">WORLD FITNESS CLUB · PUENTE GENIL · WORLD FITNESS CLUB · PUENTE GENIL ·</textPath></text>
+    <circle r="25" fill="#9B9792"/><circle r="21" fill="#c9c5bf"/><circle r="13" fill="#ECEAE6"/>
+  </symbol>
+</svg>
+
+<p class="franja">Propuesta de rediseño en revisión · la web oficial sigue en <a href="https://worldfitnessclub.es/">worldfitnessclub.es</a></p>
+
+<header class="cab">
+  <div class="env">
+    <a class="marca" href="#inicio" aria-label="World Fitness Club, inicio">
+      <img src="img/escudo.webp" width="499" height="328" alt="">
+      <span><b>World Fitness</b><small>CLUB · PUENTE GENIL</small></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#catalogo">Catálogo</a><a href="#maquinas">Máquinas</a><a href="#sala">La sala</a><a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-rojo" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20vengo%20de%20la%20web" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+  </div>
+</header>
+
+<main id="inicio">
+<!-- 1 · PORTADA -->
+<section class="portada" aria-labelledby="t-portada">
+  <div class="env">
+    <div class="rotulos"><span>Puente Genil · Córdoba</span><span>Gimnasio 24 h · Distribuidor</span></div>
+  </div>
+  <div class="conjunto">
+    <!-- La barra del escudo, prolongada hasta el borde de la pantalla y cargada con discos -->
+    <svg class="lado izq" viewBox="0 0 3000 250" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="acero" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1eee9"/><stop offset=".45" stop-color="#a9a5a0"/><stop offset="1" stop-color="#4f4c49"/></linearGradient>
+        <linearGradient id="caucho" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0c0a0a"/><stop offset=".5" stop-color="#2b2626"/><stop offset="1" stop-color="#0c0a0a"/></linearGradient>
+      </defs>
+      <rect x="0" y="119" width="3000" height="12" fill="url(#acero)"/>
+      <rect x="2560" y="113" width="336" height="24" rx="4" fill="url(#acero)"/>
+      <g class="pl"><rect x="2846" y="10" width="38" height="230" rx="9" fill="url(#caucho)"/><rect x="2851" y="16" width="28" height="218" rx="6" fill="none" stroke="#3d3737" stroke-width="2"/></g>
+      <g class="pl"><rect x="2805" y="27" width="38" height="196" rx="9" fill="url(#caucho)"/><rect x="2810" y="33" width="28" height="184" rx="6" fill="none" stroke="#3d3737" stroke-width="2"/></g>
+      <g class="pl"><rect x="2770" y="50" width="32" height="150" rx="8" fill="url(#caucho)"/><rect x="2775" y="56" width="22" height="138" rx="5" fill="none" stroke="#3d3737" stroke-width="2"/></g>
+      <g class="pl"><rect x="2744" y="73" width="23" height="104" rx="6" fill="url(#caucho)"/></g>
+      <g class="cl"><rect x="2712" y="103" width="29" height="44" rx="5" fill="#2a2626"/><rect x="2719" y="84" width="9" height="22" rx="3" fill="#D8231C"/></g>
+    </svg>
+    <img class="escudo" src="img/escudo.webp" width="499" height="328" fetchpriority="high"
+         alt="Escudo de World Fitness Club: corona, casco espartano, monograma MF, barra con discos y alas">
+    <svg class="lado der" viewBox="0 0 3000 250" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+      <rect x="0" y="119" width="3000" height="12" fill="url(#acero)"/>
+      <rect x="2560" y="113" width="336" height="24" rx="4" fill="url(#acero)"/>
+      <g class="pl"><rect x="2846" y="10" width="38" height="230" rx="9" fill="url(#caucho)"/><rect x="2851" y="16" width="28" height="218" rx="6" fill="none" stroke="#3d3737" stroke-width="2"/></g>
+      <g class="pl"><rect x="2805" y="27" width="38" height="196" rx="9" fill="url(#caucho)"/><rect x="2810" y="33" width="28" height="184" rx="6" fill="none" stroke="#3d3737" stroke-width="2"/></g>
+      <g class="pl"><rect x="2770" y="50" width="32" height="150" rx="8" fill="url(#caucho)"/><rect x="2775" y="56" width="22" height="138" rx="5" fill="none" stroke="#3d3737" stroke-width="2"/></g>
+      <g class="pl"><rect x="2744" y="73" width="23" height="104" rx="6" fill="url(#caucho)"/></g>
+      <g class="cl"><rect x="2712" y="103" width="29" height="44" rx="5" fill="#2a2626"/><rect x="2719" y="84" width="9" height="22" rx="3" fill="#D8231C"/></g>
+    </svg>
+  </div>
+  <div class="env">
+    <h1 id="t-portada">Maquinaria de gimnasio que se prueba <em>entrenando</em></h1>
+    <p class="lead">Distribuimos maquinaria profesional desde Puente Genil y la tenemos montada en nuestro propio gimnasio, abierto las 24&nbsp;horas. Cada máquina con su precio, IVA incluido. Transporte y montaje en toda España.</p>
+    <div class="acciones">
+      <a class="btn btn-blanco" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20quiero%20equipar%20una%20sala" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Habla con Miguel</a>
+      <a class="btn btn-linea" href="tel:+34618050806"><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg>618 05 08 06</a>
+    </div>
+    <p class="prueba">
+      <span><svg class="ico lleno" aria-hidden="true"><use href="#i-estrella"/></svg>5,0 · 149 reseñas en Google</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg>Abierto 24 h, todos los días</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-camion"/></svg>Montaje en toda España</span>
+    </p>
+  </div>
+</section>
+
+<!-- 2 · CATÁLOGO EN DISCOS -->
+<section class="catalogo" id="catalogo" aria-labelledby="t-catalogo">
+  <div class="env">
+    <div class="cabeza">
+      <div>
+        <p class="kicker">El catálogo</p>
+        <h2 id="t-catalogo">Siete zonas de sala. Cada disco pesa lo que lleva dentro.</h2>
+      </div>
+      <p class="intro">El tamaño de cada disco es el número de máquinas que tenemos en esa categoría. Todas con precio publicado. Si no sabes por dónde empezar, pregunta: te decimos qué necesita tu sala.</p>
+    </div>
+    <ul class="discos">
+      <li><a href="https://worldfitnessclub.es/categoria/musculacion" style="--d:20.6rem" aria-label="Musculación, 95 máquinas"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><text y="-38" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="44" fill="#fff">95</text><text y="54" text-anchor="middle" font-family="Fragment Mono,monospace" font-size="10" letter-spacing="2" fill="#cfcac4">MÁQUINAS</text></svg></a><span class="nom">Musculación<small>95 máquinas</small></span></li>
+      <li><a href="https://worldfitnessclub.es/categoria/maquinaria-carga-de-discos" style="--d:16.9rem" aria-label="Carga de discos, 51 máquinas"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><text y="-38" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="44" fill="#fff">51</text><text y="54" text-anchor="middle" font-family="Fragment Mono,monospace" font-size="10" letter-spacing="2" fill="#cfcac4">MÁQUINAS</text></svg></a><span class="nom">Carga de discos<small>51 máquinas</small></span></li>
+      <li><a href="https://worldfitnessclub.es/categoria/maquinaria-de-aislamiento-y-gluteo" style="--d:13.75rem" aria-label="Aislamiento y glúteo, 25 máquinas"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><text y="-38" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="44" fill="#fff">25</text><text y="54" text-anchor="middle" font-family="Fragment Mono,monospace" font-size="10" letter-spacing="2" fill="#cfcac4">MÁQUINAS</text></svg></a><span class="nom">Aislamiento y glúteo<small>25 máquinas</small></span></li>
+      <li><a href="https://worldfitnessclub.es/categoria/equipamiento-de-peso-libre-y-racks" style="--d:13.45rem" aria-label="Peso libre y racks, 23 productos"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><text y="-38" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="44" fill="#fff">23</text><text y="54" text-anchor="middle" font-family="Fragment Mono,monospace" font-size="10" letter-spacing="2" fill="#cfcac4">PRODUCTOS</text></svg></a><span class="nom">Peso libre y racks<small>23 productos</small></span></li>
+      <li><a href="https://worldfitnessclub.es/categoria/accesorios-y-entrenamiento-funcional" style="--d:13.1rem" aria-label="Accesorios y funcional, 21 productos"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><text y="-38" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="44" fill="#fff">21</text><text y="54" text-anchor="middle" font-family="Fragment Mono,monospace" font-size="10" letter-spacing="2" fill="#cfcac4">PRODUCTOS</text></svg></a><span class="nom">Accesorios<small>21 productos</small></span></li>
+      <li><a href="https://worldfitnessclub.es/categoria/funcional" style="--d:11.3rem" aria-label="Funcional, 11 máquinas"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><text y="-38" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="44" fill="#fff">11</text><text y="54" text-anchor="middle" font-family="Fragment Mono,monospace" font-size="10" letter-spacing="2" fill="#cfcac4">MÁQUINAS</text></svg></a><span class="nom">Funcional<small>11 máquinas</small></span></li>
+      <li><a href="https://worldfitnessclub.es/categoria/maquinas-selectorizadas" style="--d:9.7rem" aria-label="Selectorizadas, 5 máquinas"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/><text y="-38" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="44" fill="#fff">5</text><text y="54" text-anchor="middle" font-family="Fragment Mono,monospace" font-size="10" letter-spacing="2" fill="#cfcac4">MÁQUINAS</text></svg></a><span class="nom">Selectorizadas<small>5 máquinas</small></span></li>
+    </ul>
+    <p class="fuente">Recuento del catálogo de worldfitnessclub.es a 24-sep-2026.</p>
+  </div>
+</section>
+
+<!-- 3 · FICHAS DE MÁQUINA -->
+<section class="fichas" id="maquinas" aria-labelledby="t-fichas">
+  <div class="env">
+    <p class="kicker">Lo que más piden los centros</p>
+    <h2 id="t-fichas">Kilos, medidas y precio. Sin «consúltanos».</h2>
+    <p class="intro">Así viene cada máquina en su chapa: lo que pesa, lo que ocupa en tu sala y lo que cuesta con IVA.</p>
+    <ul class="placas">
+      <li class="placa">
+        <figure><img src="img/hack.webp" width="335" height="258" loading="lazy" alt="Máquina de sentadilla hack lineal, negra con apoyos amarillos"></figure>
+        <div class="chapa">
+          <span class="cat">Carga de discos · tren inferior</span>
+          <h3>Sentadilla hack lineal</h3>
+          <p class="cita-ficha"><span>371 kg</span> de máquina para cargar lo que haga falta sin castigar la espalda.</p>
+          <dl><dt>Peso</dt><dd>371 kg</dd><dt>Medidas</dt><dd>2693 × 1844 × 1789 mm</dd></dl>
+          <p class="precio">1.460 €<small>IVA INC.</small></p>
+          <div class="pie"><a class="btn btn-rojo" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20sentadilla%20hack%20lineal" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a href="https://worldfitnessclub.es/producto/jaca-maquina-de-sentadilla-hack-lineal">Ver ficha</a></div>
+        </div>
+      </li>
+      <li class="placa">
+        <figure><img src="img/smith.webp" width="322" height="265" loading="lazy" alt="Máquina Smith roja con barra guiada"></figure>
+        <div class="chapa">
+          <span class="cat">Peso libre y racks</span>
+          <h3>Máquina Smith</h3>
+          <dl><dt>Peso</dt><dd>215 kg</dd><dt>Medidas</dt><dd>1340 × 2266 × 2384 mm</dd></dl>
+          <p class="precio">1.362 €<small>IVA INC.</small></p>
+          <div class="pie"><a class="btn btn-rojo" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20m%C3%A1quina%20Smith" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a href="https://worldfitnessclub.es/producto/maquina-smith">Ver ficha</a></div>
+        </div>
+      </li>
+      <li class="placa">
+        <figure><img src="img/vsquat.webp" width="316" height="261" loading="lazy" alt="Máquina de sentadilla en V roja"></figure>
+        <div class="chapa">
+          <span class="cat">Carga de discos</span>
+          <h3>Sentadilla en V</h3>
+          <dl><dt>Peso</dt><dd>242 kg</dd><dt>Medidas</dt><dd>2430 × 1450 × 1810 mm</dd></dl>
+          <p class="precio">1.300 €<small>IVA INC.</small></p>
+          <div class="pie"><a class="btn btn-rojo" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20sentadilla%20en%20V" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a href="https://worldfitnessclub.es/producto/sentadilla-en-v-v-squat">Ver ficha</a></div>
+        </div>
+      </li>
+      <li class="placa">
+        <figure><img src="img/aductores.webp" width="333" height="264" loading="lazy" alt="Máquina de aductores roja con respaldo negro"></figure>
+        <div class="chapa">
+          <span class="cat">Carga de discos · glúteo</span>
+          <h3>Aductores</h3>
+          <dl><dt>Peso</dt><dd>139 kg</dd><dt>Medidas</dt><dd>1690 × 730 × 750 mm</dd></dl>
+          <p class="precio">1.260 €<small>IVA INC.</small></p>
+          <div class="pie"><a class="btn btn-rojo" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20m%C3%A1quina%20de%20aductores" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a href="https://worldfitnessclub.es/producto/maquina-de-aductores">Ver ficha</a></div>
+        </div>
+      </li>
+      <li class="placa">
+        <figure><img src="img/jalon.webp" width="321" height="271" loading="lazy" alt="Máquina de jalón al pecho ISO lateral roja"></figure>
+        <div class="chapa">
+          <span class="cat">Carga de discos · espalda</span>
+          <h3>Jalón al pecho ISO</h3>
+          <dl><dt>Peso</dt><dd>145 kg</dd><dt>Medidas</dt><dd>1650 × 1100 × 2050 mm</dd></dl>
+          <p class="precio">990 €<small>IVA INC.</small></p>
+          <div class="pie"><a class="btn btn-rojo" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20el%20jal%C3%B3n%20al%20pecho%20ISO" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a href="https://worldfitnessclub.es/producto/jalon-al-pecho-iso">Ver ficha</a></div>
+        </div>
+      </li>
+      <li class="placa">
+        <figure><img src="img/hombros.webp" width="340" height="259" loading="lazy" alt="Máquina de press de hombros ISO lateral roja"></figure>
+        <div class="chapa">
+          <span class="cat">Carga de discos · hombro</span>
+          <h3>Press de hombros ISO</h3>
+          <dl><dt>Peso</dt><dd>139 kg</dd><dt>Medidas</dt><dd>1500 × 1250 × 1900 mm</dd></dl>
+          <p class="precio">990 €<small>IVA INC.</small></p>
+          <div class="pie"><a class="btn btn-rojo" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20el%20press%20de%20hombros%20ISO" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a href="https://worldfitnessclub.es/producto/press-de-hombros-iso">Ver ficha</a></div>
+        </div>
+      </li>
+      <li class="placa placa-falta">
+        <div class="chapa">
+          <span class="cat">¿No está aquí?</span>
+          <h3>La que buscas, con su precio</h3>
+          <p>Hay más de doscientas en el catálogo, de accesorios a racks. Dile a Miguel qué máquina te falta y te contesta con kilos, medidas y precio.</p>
+          <div class="pie"><a class="btn btn-blanco" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20busco%20una%20m%C3%A1quina%20que%20no%20veo%20en%20la%20web" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Pedir una máquina</a></div>
+        </div>
+      </li>
+    </ul>
+    <div class="mas">
+      <a class="btn btn-blanco" href="https://worldfitnessclub.es/catalogo">Ver el catálogo completo<svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></a>
+      <span class="nota" style="color:#a9a39c">Precios y medidas de su catálogo a 24-sep-2026.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · LA SALA -->
+<section class="sala" id="sala" aria-labelledby="t-sala">
+  <picture class="foto">
+    <source media="(max-width:700px)" srcset="img/sala-m.webp">
+    <img src="img/sala.webp" width="1400" height="788" loading="lazy" alt="La sala de World Fitness Club en Puente Genil, llena de máquinas negras y rojas">
+  </picture>
+  <div class="env">
+    <p class="kicker">El showroom</p>
+    <h2 id="t-sala">Es un gimnasio. Y no cierra.</h2>
+    <p class="intro" style="color:#eee8e2">Las máquinas no esperan en una nave: están montadas en la sala de C. Maestro Francisco Vila, y los socios entrenan en ellas a cualquier hora. Sus reseñas hablan de máquinas antes que de nada.</p>
+    <div class="dos">
+      <blockquote class="cita-grande">
+        <p>Puedes venir cuando quieras y a la hora que quieras</p>
+        <cite class="firma-cita">Rafa Fresno · reseña en Google</cite>
+      </blockquote>
+      <figure class="rack">
+        <img src="img/rack.webp" width="700" height="1244" loading="lazy" alt="Rack rojo en la sala, con el rótulo World Fitness en la pared del fondo">
+        <figcaption>La sala, abril de 2025 · foto de su ficha de Google</figcaption>
+      </figure>
+    </div>
+    <div class="citas">
+      <blockquote><p>Las máquinas se renuevan cada poco tiempo</p><cite class="firma-cita">José Manuel Montilla · Google</cite></blockquote>
+      <blockquote><p>Máquinas nuevas y limpias</p><cite class="firma-cita">Manuel Alejandro Borrego · Google</cite></blockquote>
+      <blockquote><p>Miguel, el dueño, es una persona de 10</p><cite class="firma-cita">Rafa Fresno · Google</cite></blockquote>
+    </div>
+    <div class="datos">
+      <div><b>5,0</b><span>de media en 149 reseñas de Google</span></div>
+      <div><b>48</b><span>reseñas que hablan de las máquinas</span></div>
+      <div><b>24 h</b><span>abierto de lunes a domingo</span></div>
+    </div>
+    <div class="entrenar"><p><strong>¿Vienes a entrenar, no a comprar?</strong> También es tu sitio: abierto 24 horas, todos los días. Pregúntale a Miguel por las cuotas.</p></div>
+  </div>
+</section>
+
+<!-- 5 · CÓMO SE EQUIPA UNA SALA -->
+<section class="proceso" aria-labelledby="t-proceso">
+  <div class="env">
+    <p class="kicker">Cómo se equipa una sala</p>
+    <h2 id="t-proceso">De los metros a la primera serie.</h2>
+    <ol class="pasos">
+      <li><span class="num" aria-hidden="true"></span><h3>Nos cuentas la sala</h3><p>Metros, tipo de cliente y lo que ya tienes. Por WhatsApp, por teléfono o en persona.</p></li>
+      <li><span class="num" aria-hidden="true"></span><h3>Presupuesto con precio</h3><p>Máquina a máquina, IVA incluido y sin compromiso.</p><p class="nota">Como orientación: una sala de musculación de 150&nbsp;m² desde 15.000&nbsp;€; completa, con cardio, peso libre y funcional, puede pasar de 60.000&nbsp;€.</p></li>
+      <li><span class="num" aria-hidden="true"></span><h3>La pruebas antes</h3><p>Ven a Puente Genil, pide cita y prueba el recorrido de cada máquina en una sala de verdad.</p></li>
+      <li><span class="num" aria-hidden="true"></span><h3>Te la montamos</h3><p>Coordinamos transporte y montaje en toda España. Recibes la sala lista para entrenar.</p></li>
+    </ol>
+    <div class="quien"><b>Equipamos</b><p>gimnasios comerciales, salas de hotel, centros de fisioterapia, instalaciones deportivas municipales y gimnasios en casa.</p></div>
+  </div>
+</section>
+
+<!-- 6 · HABLA CON MIGUEL -->
+<section class="contacto" id="contacto" aria-labelledby="t-contacto">
+  <div class="env rejilla">
+    <div>
+      <p class="kicker">Contacto</p>
+      <h2 id="t-contacto">Habla con Miguel.</h2>
+      <p class="intro">Cuéntale qué sala quieres montar o qué máquina te falta. Te contesta con precio.</p>
+      <a class="telefono" href="tel:+34618050806">618 05 08 06</a>
+      <div class="acciones">
+        <a class="btn btn-tinta" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20vengo%20de%20la%20web" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Escribir por WhatsApp</a>
+        <a class="btn btn-linea" href="mailto:miguel.franco@worldfitnessclub.es">miguel.franco@worldfitnessclub.es</a>
+      </div>
+      <div class="ficha-local">
+        <span><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><a href="https://www.google.com/maps/search/?api=1&amp;query=World%20Fitness%20Club%20Puente%20Genil">C. Maestro Francisco Vila, 33 · 14500 Puente Genil (Córdoba)</a></span>
+        <span><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg>Gimnasio abierto 24 horas · showroom con cita</span>
+      </div>
+    </div>
+    <figure class="fachada">
+      <img src="img/fachada.webp" width="760" height="950" loading="lazy" alt="Fachada de World Fitness Club con su rótulo rojo en Puente Genil">
+      <figcaption>Aquí estamos · C. Maestro Francisco Vila, 33</figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="pie-web">
+  <div class="env">
+    <img src="img/escudo.webp" width="499" height="328" loading="lazy" alt="Escudo de World Fitness Club">
+    <div>
+      <p><b>World Fitness Club</b> · gimnasio 24 h y maquinaria de gimnasio profesional</p>
+      <p>C. Maestro Francisco Vila, 33 · 14500 Puente Genil (Córdoba) · <a href="tel:+34618050806">618 05 08 06</a></p>
+    </div>
+    <div class="legal"><a href="https://worldfitnessclub.es/catalogo">Catálogo</a><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></div>
+    <p class="credito">Propuesta de rediseño (OpsPilot, 24-sep-2026). Fotos: ficha de Google del gimnasio y catálogo de worldfitnessclub.es. Reseñas literales de Google, con el nombre de quien las firma.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script>
+/* Se carga la barra. Solo con GSAP y sin movimiento reducido; si no, la barra ya está cargada en el HTML. */
+addEventListener('DOMContentLoaded', () => {
+  const raiz = document.documentElement;
+  if (!window.gsap || matchMedia('(prefers-reduced-motion: reduce)').matches) { raiz.classList.remove('js-carga'); return; }
+  gsap.registerPlugin(ScrollTrigger);
+  const lados = document.querySelectorAll('.lado');
+  const discos = [0, 1, 2, 3].map((i) => [...lados].map((l) => l.querySelectorAll('.pl')[i]));
+  const cierres = [...lados].map((l) => l.querySelector('.cl'));
+
+  // 1 · Los discos entran por la barra desde el borde de la pantalla, del grande al pequeño,
+  //     y cada golpe asienta el conjunto. Luego cierran los collarines.
+  gsap.set([...discos.flat(), ...cierres], { x: -1700 });
+  raiz.classList.remove('js-carga');
+  const carga = gsap.timeline({ delay: .15 });
+  discos.forEach((par, i) => {
+    carga.to(par, { x: 0, duration: .42 - i * .04, ease: 'power3.in' }, i ? '>-0.02' : 0)
+         .fromTo('.conjunto', { y: 0 }, { y: 5 - i, duration: .07, yoyo: true, repeat: 1, ease: 'power1.out' }, '>');
+  });
+  carga.to(cierres, { x: 0, duration: .3, ease: 'back.out(2.4)' }, '>-0.05')
+       .from('.portada h1', { y: 28, opacity: 0, duration: .6, ease: 'power3.out' }, .35)
+       .from('.portada .lead, .portada .acciones, .portada .prueba', { y: 16, opacity: 0, duration: .5, stagger: .08, ease: 'power2.out' }, .6);
+
+  // 2 · Los discos del catálogo entran rodando hasta su sitio.
+  gsap.from('.discos a', {
+    x: -140, rotation: -260, opacity: 0, duration: .9, ease: 'power3.out', stagger: .09,
+    scrollTrigger: { trigger: '.discos', start: 'top 80%' }
+  });
+
+  // 3 · Las chapas de máquina se atornillan una detrás de otra.
+  gsap.from('.placa', {
+    y: 30, opacity: 0, duration: .6, ease: 'power2.out', stagger: .08,
+    scrollTrigger: { trigger: '.placas', start: 'top 82%' }
+  });
+
+  // 4 · Los pasos se cargan como discos pequeños.
+  gsap.from('.pasos .num', {
+    scale: .4, rotation: -120, opacity: 0, duration: .6, ease: 'back.out(1.8)', stagger: .12,
+    scrollTrigger: { trigger: '.pasos', start: 'top 82%' }
+  });
+});
+</script>
+</body>
+</html>
