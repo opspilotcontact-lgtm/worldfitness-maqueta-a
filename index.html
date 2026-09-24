@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-raiz="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -143,7 +143,7 @@ h2{margin:0;font:900 clamp(2.1rem,5.2vw,4.4rem)/.92 var(--display);font-stretch:
 .ficha dd.p small{font:500 .76rem var(--cifra);letter-spacing:.08em;color:#a9a39c;margin-left:.3rem}
 .ficha .acc{display:flex;flex-wrap:wrap;gap:.7rem 1rem;align-items:center;margin-top:1.5rem}
 .ficha .acc .ver{font-weight:700}
-html:not(.js) [data-anadir]{display:none}
+html:not(.js) [data-anadir-sala]{display:none}
 /* con JS: un plato cada vez y el selector debajo */
 .vitrina.js .vitrina-lista{display:block}
 .vitrina.js .maq{display:none}
@@ -283,7 +283,12 @@ html:not(.js) .paso{display:none}
 .pie-web .credito{grid-column:1/-1;border-top:1px solid #ffffff22;padding-top:1.2rem;font:400 .75rem/1.5 var(--cifra);color:#a9a39c}
 
 /* ---------- pantallas medianas y móvil ---------- */
-@media (max-width:1060px){ .nav{display:none} }
+@media (max-width:1060px){
+  .nav{display:none}
+  .subnav{display:block;background:#0d0c0c;border-bottom:1px solid #2a2626}
+  .subnav ul{list-style:none;margin:0 auto;padding:.55rem 1rem;display:flex;gap:1.2rem;overflow-x:auto;width:min(100%,76rem)}
+  .subnav a{color:#e9e5e0;text-decoration:none;font:600 .92rem/1 var(--texto);white-space:nowrap}
+}
 @media (max-width:900px){
   .catalogo .cabeza,.contacto .rejilla{grid-template-columns:1fr}
   .vitrina.js .maq.activa{grid-template-columns:1fr}
@@ -309,6 +314,7 @@ html:not(.js) .paso{display:none}
 }
 @media (max-width:560px){
   .marca small{display:none}
+  .btn-presu .txt{display:none}
   .rotulos{font-size:.76rem;letter-spacing:.06em;flex-direction:column;gap:.2rem;align-items:center;text-align:center}
   .discos .rim{display:none}
   .discos{--esc:.6;gap:1.4rem .8rem}
@@ -319,6 +325,39 @@ html:not(.js) .paso{display:none}
   .etiqueta b{font-size:1.9rem}
   .resumen .btn span.largo{display:none}
 }
+/* ---------- presupuesto compartido con la tienda (el mismo cajón que en /tienda/) ---------- */
+.btn-presu{display:inline-flex;align-items:center;gap:.5rem;background:none;border:1.5px solid #4a4343;border-radius:.35rem;padding:.5rem .8rem;cursor:pointer;color:#fff;font:600 .92rem/1 var(--texto)}
+.btn-presu:hover{border-color:#fff}
+.btn-presu .presu-n{display:grid;place-items:center;min-width:1.6rem;height:1.6rem;padding:0 .35rem;border-radius:1rem;background:var(--rojo);font:900 .95rem/1 var(--display);font-stretch:70%}
+.btn-presu .presu-n.vacio{background:#3a3434}
+.subnav{display:none}
+.entrar{margin:1.8rem 0 0}
+.mas-tienda{margin:0;padding:.9rem 1.1rem;font-size:.95rem;color:var(--gris);border-top:1px solid #eee8e0}
+.lista .nom a{text-decoration:none}
+.cajon{margin:0 0 0 auto;height:100dvh;max-height:100dvh;width:min(100%,27rem);padding:0;border:0;background:var(--crema);color:var(--tinta);box-shadow:-20px 0 40px #0005}
+.cajon::backdrop{background:rgba(20,18,18,.55)}
+.cajon[open]{display:flex;flex-direction:column}
+.cajon-cab{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.2rem;background:var(--tinta);color:#fff;border-bottom:3px solid var(--rojo)}
+.cajon-cab h2{font-size:1.9rem}
+.cajon-cerrar{background:none;border:1.5px solid #4a4343;border-radius:50%;width:2.3rem;height:2.3rem;color:#fff;cursor:pointer;font:600 1.1rem/1 var(--texto)}
+.cajon-lista{flex:1;overflow:auto;padding:.4rem 1.2rem;margin:0;list-style:none}
+.cajon-lista li{display:grid;grid-template-columns:3rem minmax(0,1fr) auto;gap:.2rem .8rem;align-items:center;padding:.7rem 0;border-bottom:1px solid #e5ded4}
+.cajon-lista .th{width:3rem;height:3rem;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:inset 0 0 0 2px #e6dfd5;overflow:hidden}
+.cajon-lista .th img{width:86%;mix-blend-mode:multiply}
+.cajon-lista .nom{font:700 .98rem/1.2 var(--texto)}
+.cajon-lista .nom a{text-decoration:none}
+.cajon-lista .nom small{display:block;font:400 .78rem/1.4 var(--cifra);color:var(--gris)}
+.cajon-vacio{padding:2rem 1.2rem;color:var(--gris)}
+.cajon-pie{padding:1rem 1.2rem 1.3rem;background:#fff;border-top:1px solid #e5ded4;display:grid;gap:.7rem}
+.cajon-pie .total{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.cajon-pie .total b{font:900 2.2rem/1 var(--display);font-stretch:66%}
+.cajon-pie .total span{font:500 .78rem/1.3 var(--cifra);letter-spacing:.06em;color:var(--gris);text-transform:uppercase}
+.cajon-pie .fila-b{display:flex;flex-wrap:wrap;gap:.6rem}
+.cajon-pie .chico{text-decoration:none;color:var(--tinta)}
+.cajon-pie .nota{margin:0}
+.aviso-flot{position:fixed;left:50%;bottom:1.2rem;z-index:40;transform:translateX(-50%);background:var(--tinta);color:#fff;padding:.8rem 1.1rem;border-radius:.4rem;box-shadow:0 12px 26px #0007;font:600 .95rem/1.3 var(--texto);display:flex;gap:.8rem;align-items:center;max-width:calc(100% - 2rem)}
+.aviso-flot[hidden]{display:none}
+.aviso-flot button{background:var(--rojo);color:#fff;border:0;border-radius:.3rem;padding:.45rem .7rem;font:700 .88rem/1 var(--texto);cursor:pointer}
 /* Carga de discos: solo si hay movimiento y GSAP. Si GSAP no llega en 2,5 s, los discos aparecen puestos. */
 .js-carga .lado .pl,.js-carga .lado .cl{visibility:hidden}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -347,6 +386,7 @@ html:not(.js) .paso{display:none}
   <symbol id="i-camion" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
   <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
   <symbol id="i-regla" viewBox="0 0 24 24"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></symbol>
+  <symbol id="i-lista" viewBox="0 0 24 24"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></symbol>
   <symbol id="i-estrella" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></symbol>
   <defs>
     <!-- aros para el texto impreso de los discos (catálogo) y del plato (escaparate) -->
@@ -375,11 +415,13 @@ html:not(.js) .paso{display:none}
       <span><b>World Fitness</b><small>CLUB · PUENTE GENIL</small></span>
     </a>
     <nav class="nav" aria-label="Principal">
-      <a href="#catalogo">Catálogo</a><a href="#escaparate">Escaparate</a><a href="#monta">Monta tu sala</a><a href="#showroom">Showroom</a><a href="#contacto">Contacto</a>
+      <a href="tienda/">Tienda</a><a href="#escaparate">Escaparate</a><a href="#monta">Monta tu sala</a><a href="#showroom">Showroom</a><a href="#contacto">Contacto</a>
     </nav>
+    <button class="btn-presu" type="button" data-abrir-presupuesto aria-label="Presupuesto"><svg class="ico" aria-hidden="true"><use href="#i-lista"/></svg><span class="txt">Presupuesto</span><b class="presu-n vacio">0</b></button>
     <a class="btn btn-rojo" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20vengo%20de%20la%20web" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
   </div>
 </header>
+<nav class="subnav" aria-label="Secciones"><ul><li><a href="tienda/">Tienda</a></li><li><a href="#escaparate">Escaparate</a></li><li><a href="#monta">Monta tu sala</a></li><li><a href="#showroom">Showroom</a></li><li><a href="#contacto">Contacto</a></li></ul></nav>
 
 <main id="inicio">
 <!-- 1 · PORTADA (la de la v1: el escudo sostiene la barra) -->
@@ -440,56 +482,56 @@ html:not(.js) .paso{display:none}
       <p class="intro">Cada disco es una zona, y su tamaño es lo que tenemos en ella. Toca uno y entras en su catálogo, con el precio de cada máquina a la vista.</p>
     </div>
     <ul class="discos">
-      <li><a href="https://worldfitnessclub.es/categoria/musculacion" aria-label="Musculación: 95 máquinas">
+      <li><a href="categoria/musculacion/" aria-label="Musculación: 95 máquinas">
         <span class="cara" style="--d:20.68rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">MUSCULACIÓN · 95 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
           <image href="img/th-remo-bajo.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">95</text>
           <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">MUSCULACIÓN</tspan></text></svg></span>
         <span class="nom">Musculación<br><small>95 máquinas →</small></span></a></li>
-      <li><a href="https://worldfitnessclub.es/categoria/maquinaria-carga-de-discos" aria-label="Carga de discos: 51 máquinas">
+      <li><a href="categoria/maquinaria-carga-de-discos/" aria-label="Carga de discos: 51 máquinas">
         <span class="cara" style="--d:17.43rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">CARGA DE DISCOS · 51 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
           <image href="img/th-hombros-iso.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">51</text>
           <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="60">CARGA DE</tspan><tspan x="0" y="75">DISCOS</tspan></text></svg></span>
         <span class="nom">Carga de discos<br><small>51 máquinas →</small></span></a></li>
-      <li><a href="https://worldfitnessclub.es/categoria/maquinaria-de-aislamiento-y-gluteo" aria-label="Aislamiento y glúteo: 25 máquinas">
+      <li><a href="categoria/maquinaria-de-aislamiento-y-gluteo/" aria-label="Aislamiento y glúteo: 25 máquinas">
         <span class="cara" style="--d:14.75rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">AISLAMIENTO Y GLÚTEO · 25 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
           <image href="img/th-vsquat.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">25</text>
           <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="60">AISLAMIENTO</tspan><tspan x="0" y="75">Y GLÚTEO</tspan></text></svg></span>
         <span class="nom">Aislamiento y glúteo<br><small>25 máquinas →</small></span></a></li>
-      <li><a href="https://worldfitnessclub.es/categoria/equipamiento-de-peso-libre-y-racks" aria-label="Peso libre y racks: 23 productos">
+      <li><a href="categoria/equipamiento-de-peso-libre-y-racks/" aria-label="Peso libre y racks: 23 productos">
         <span class="cara" style="--d:14.49rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">PESO LIBRE Y RACKS · 23 PRODUCTOS · WORLD FITNESS CLUB ·</textPath></text>
           <image href="img/th-dominadas.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">23</text>
           <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="60">PESO LIBRE</tspan><tspan x="0" y="75">Y RACKS</tspan></text></svg></span>
         <span class="nom">Peso libre y racks<br><small>23 productos →</small></span></a></li>
-      <li><a href="https://worldfitnessclub.es/categoria/accesorios-y-entrenamiento-funcional" aria-label="Accesorios: 21 productos">
+      <li><a href="categoria/accesorios-y-entrenamiento-funcional/" aria-label="Accesorios: 21 productos">
         <span class="cara" style="--d:14.23rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">ACCESORIOS · 21 PRODUCTOS · WORLD FITNESS CLUB ·</textPath></text>
           <image href="img/th-soporte-discos.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">21</text>
           <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">ACCESORIOS</tspan></text></svg></span>
         <span class="nom">Accesorios<br><small>21 productos →</small></span></a></li>
-      <li><a href="https://worldfitnessclub.es/categoria/cardio" aria-label="Cardio: 21 máquinas">
+      <li><a href="categoria/cardio/" aria-label="Cardio: 21 máquinas">
         <span class="cara" style="--d:14.23rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">CARDIO · 21 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
           <image href="img/th-cinta.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">21</text>
           <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">CARDIO</tspan></text></svg></span>
         <span class="nom">Cardio<br><small>21 máquinas →</small></span></a></li>
-      <li><a href="https://worldfitnessclub.es/categoria/funcional" aria-label="Funcional: 11 máquinas">
+      <li><a href="categoria/funcional/" aria-label="Funcional: 11 máquinas">
         <span class="cara" style="--d:12.65rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">FUNCIONAL · 11 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
           <image href="img/th-ext-piernas.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
           <text y="-52" text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="31" fill="#fff">11</text>
           <text text-anchor="middle" font-family="Anybody,Impact,sans-serif" font-weight="900" font-stretch="60%" font-size="15" fill="#fff"><tspan x="0" y="66">FUNCIONAL</tspan></text></svg></span>
         <span class="nom">Funcional<br><small>11 máquinas →</small></span></a></li>
-      <li><a href="https://worldfitnessclub.es/categoria/maquinas-selectorizadas" aria-label="Selectorizadas: 5 máquinas">
+      <li><a href="categoria/maquinas-selectorizadas/" aria-label="Selectorizadas: 5 máquinas">
         <span class="cara" style="--d:11.30rem"><svg viewBox="-110 -110 220 220" aria-hidden="true"><use href="#disco" x="-110" y="-110" width="220" height="220"/>
           <text class="rim" font-family="Fragment Mono,monospace" font-size="10.5" fill="#8f8983"><textPath href="#aro" textLength="570" lengthAdjust="spacing">SELECTORIZADAS · 5 MÁQUINAS · WORLD FITNESS CLUB ·</textPath></text>
           <image href="img/th-jalon-remo.webp" x="-38" y="-32" width="76" height="64" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
@@ -498,6 +540,7 @@ html:not(.js) .paso{display:none}
         <span class="nom">Selectorizadas<br><small>5 máquinas →</small></span></a></li>
     </ul>
     <p class="nota">Recuento de worldfitnessclub.es a 24-sep-2026. Una máquina puede estar en dos zonas: por eso los discos suman más de 163.</p>
+    <p class="entrar"><a class="btn btn-tinta" href="tienda/">Entrar en la tienda: las 163, con su precio<svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></a></p>
   </div>
 </section>
 
@@ -520,7 +563,7 @@ html:not(.js) .paso{display:none}
             <h3>Máquina Smith</h3>
             <p class="dice">Para entrenar al fallo sin compañero: la barra va guiada y el bloqueo rápido la frena donde quieras.</p>
             <dl><dt>Peso</dt><dd>215 kg</dd><dt>Medidas</dt><dd>1340 × 2266 × 2384 mm</dd><dt>Precio</dt><dd class="p">1.362 €<small>IVA INCLUIDO</small></dd></dl>
-            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir="smith">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20M%C3%A1quina%20Smith%20%281.362%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="https://worldfitnessclub.es/producto/maquina-smith">Ver ficha</a></div>
+            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir-sala="maquina-smith">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20M%C3%A1quina%20Smith%20%281.362%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="producto/maquina-smith/">Ver ficha</a></div>
           </div>
         </li>
         <li class="maq" data-id="vsquat" data-nombre="Sentadilla en V" data-precio="1.300 €">
@@ -534,7 +577,7 @@ html:not(.js) .paso{display:none}
             <h3>Sentadilla en V</h3>
             <p class="dice">Sentadilla con mucha carga sin castigar la zona lumbar: el recorrido va guiado.</p>
             <dl><dt>Peso</dt><dd>242 kg</dd><dt>Medidas</dt><dd>2430 × 1450 × 1810 mm</dd><dt>Precio</dt><dd class="p">1.300 €<small>IVA INCLUIDO</small></dd></dl>
-            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir="vsquat">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Sentadilla%20en%20V%20%281.300%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="https://worldfitnessclub.es/producto/sentadilla-en-v-v-squat">Ver ficha</a></div>
+            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir-sala="sentadilla-en-v-v-squat">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Sentadilla%20en%20V%20%281.300%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="producto/sentadilla-en-v-v-squat/">Ver ficha</a></div>
           </div>
         </li>
         <li class="maq" data-id="aductores" data-nombre="Aductores" data-precio="1.260 €">
@@ -548,7 +591,7 @@ html:not(.js) .paso{display:none}
             <h3>Aductores</h3>
             <p class="dice">Recorrido ajustable: estiras cómodo y cierras con toda la fuerza.</p>
             <dl><dt>Peso</dt><dd>139 kg</dd><dt>Medidas</dt><dd>1690 × 730 × 750 mm</dd><dt>Precio</dt><dd class="p">1.260 €<small>IVA INCLUIDO</small></dd></dl>
-            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir="aductores">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Aductores%20%281.260%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="https://worldfitnessclub.es/producto/maquina-de-aductores">Ver ficha</a></div>
+            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir-sala="maquina-de-aductores">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Aductores%20%281.260%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="producto/maquina-de-aductores/">Ver ficha</a></div>
           </div>
         </li>
         <li class="maq" data-id="jalon-iso" data-nombre="Jalón al pecho ISO" data-precio="990 €">
@@ -562,7 +605,7 @@ html:not(.js) .paso{display:none}
             <h3>Jalón al pecho ISO</h3>
             <p class="dice">Cada brazo tira por su lado: iguala la fuerza de un lado y del otro.</p>
             <dl><dt>Peso</dt><dd>145 kg</dd><dt>Medidas</dt><dd>1650 × 1100 × 2050 mm</dd><dt>Precio</dt><dd class="p">990 €<small>IVA INCLUIDO</small></dd></dl>
-            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir="jalon-iso">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Jal%C3%B3n%20al%20pecho%20ISO%20%28990%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="https://worldfitnessclub.es/producto/jalon-al-pecho-iso">Ver ficha</a></div>
+            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir-sala="jalon-al-pecho-iso">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Jal%C3%B3n%20al%20pecho%20ISO%20%28990%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="producto/jalon-al-pecho-iso/">Ver ficha</a></div>
           </div>
         </li>
         <li class="maq" data-id="hombros-iso" data-nombre="Press de hombros ISO" data-precio="990 €">
@@ -576,7 +619,7 @@ html:not(.js) .paso{display:none}
             <h3>Press de hombros ISO</h3>
             <p class="dice">Brazos independientes y trayectoria divergente, que cuida la articulación del hombro.</p>
             <dl><dt>Peso</dt><dd>139 kg</dd><dt>Medidas</dt><dd>1500 × 1250 × 1900 mm</dd><dt>Precio</dt><dd class="p">990 €<small>IVA INCLUIDO</small></dd></dl>
-            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir="hombros-iso">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Press%20de%20hombros%20ISO%20%28990%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="https://worldfitnessclub.es/producto/press-de-hombros-iso">Ver ficha</a></div>
+            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir-sala="press-de-hombros-iso">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Press%20de%20hombros%20ISO%20%28990%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="producto/press-de-hombros-iso/">Ver ficha</a></div>
           </div>
         </li>
         <li class="maq" data-id="pecho-iso" data-nombre="Press de pecho inclinado ISO" data-precio="990 €">
@@ -590,7 +633,7 @@ html:not(.js) .paso{display:none}
             <h3>Press de pecho inclinado ISO</h3>
             <p class="dice">Pectoral superior con brazos independientes: la sensación del peso libre con la seguridad de una máquina.</p>
             <dl><dt>Peso</dt><dd>139 kg</dd><dt>Medidas</dt><dd>1435 × 1666 × 1978 mm</dd><dt>Precio</dt><dd class="p">990 €<small>IVA INCLUIDO</small></dd></dl>
-            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir="pecho-iso">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Press%20de%20pecho%20inclinado%20ISO%20%28990%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="https://worldfitnessclub.es/producto/press-de-pecho-inclinado-iso">Ver ficha</a></div>
+            <div class="acc"><button class="btn btn-rojo" type="button" data-anadir-sala="press-de-pecho-inclinado-iso">+ Añadir a mi sala</button><a class="btn btn-linea" href="https://wa.me/34618050806?text=Hola%20Miguel%2C%20me%20interesa%20la%20Press%20de%20pecho%20inclinado%20ISO%20%28990%20%E2%82%AC%29." rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Preguntar</a><a class="ver" href="producto/press-de-pecho-inclinado-iso/">Ver ficha</a></div>
           </div>
         </li>
       </ol>
@@ -624,53 +667,55 @@ html:not(.js) .paso{display:none}
         </div>
         <div class="pie-plano">
           <p class="nota">Medidas de cada máquina según su ficha, con 80 cm de paso entre ellas. Plano orientativo.</p>
-          <div class="botones"><button class="chico" type="button" id="ejemplo">Ver un ejemplo de 150 m²</button><button class="chico" type="button" id="vaciar">Vaciar</button></div>
+          <div class="botones"><button class="chico" type="button" id="ejemplo">Cargar el ejemplo de 150 m²</button><button class="chico" type="button" id="vaciar">Vaciar</button></div>
         </div>
       </div>
       <div class="lista" aria-label="Máquinas para tu sala">
+        <details name="zonas" id="grupo-extra" open hidden><summary>Añadidas desde la tienda <small>0 máquinas</small></summary><ul></ul></details>
         <details name="zonas" open><summary>Fuerza y carga de discos <small>8 máquinas</small></summary>
           <ul>
-          <li class="fila" data-id="smith"><span class="th"><img src="img/th-smith.webp" width="200" height="165" loading="lazy" alt=""></span><span class="nom">Máquina Smith<small>1,34 × 2,27 m · 215 kg</small></span><span class="der"><span class="pre">1.362 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Máquina Smith" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Máquina Smith">+</button></span></span></li>
-          <li class="fila" data-id="vsquat"><span class="th"><img src="img/th-vsquat.webp" width="200" height="165" loading="lazy" alt=""></span><span class="nom">Sentadilla en V (V-Squat)<small>2,43 × 1,45 m · 242 kg</small></span><span class="der"><span class="pre">1.300 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Sentadilla en V (V-Squat)" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Sentadilla en V (V-Squat)">+</button></span></span></li>
-          <li class="fila" data-id="prensa45"><span class="th"><img src="img/th-prensa45.webp" width="200" height="150" loading="lazy" alt=""></span><span class="nom">Prensa de Piernas a 45°<small>1,78 × 2,06 m · 215 kg</small></span><span class="der"><span class="pre">1.386 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Prensa de Piernas a 45°" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Prensa de Piernas a 45°">+</button></span></span></li>
-          <li class="fila" data-id="hack"><span class="th"><img src="img/th-hack.webp" width="200" height="154" loading="lazy" alt=""></span><span class="nom">Sentadilla Hack Lineal<small>2,69 × 1,84 m · 371 kg</small></span><span class="der"><span class="pre">1.460 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Sentadilla Hack Lineal" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Sentadilla Hack Lineal">+</button></span></span></li>
-          <li class="fila" data-id="rack"><span class="th"><img src="img/th-rack.webp" width="200" height="168" loading="lazy" alt=""></span><span class="nom">Rack de Potencia Olímpico con Dominadas<small>1,78 × 1,36 m · 165 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Rack de Potencia Olímpico con Dominadas" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Rack de Potencia Olímpico con Dominadas">+</button></span></span></li>
-          <li class="fila" data-id="jalon-iso"><span class="th"><img src="img/th-jalon-iso.webp" width="200" height="169" loading="lazy" alt=""></span><span class="nom">Jalón al Pecho ISO<small>1,65 × 1,10 m · 145 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Jalón al Pecho ISO" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Jalón al Pecho ISO">+</button></span></span></li>
-          <li class="fila" data-id="hombros-iso"><span class="th"><img src="img/th-hombros-iso.webp" width="200" height="152" loading="lazy" alt=""></span><span class="nom">Press de Hombros ISO<small>1,50 × 1,25 m · 139 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Press de Hombros ISO" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Press de Hombros ISO">+</button></span></span></li>
-          <li class="fila" data-id="pecho-iso"><span class="th"><img src="img/th-pecho-iso.webp" width="200" height="151" loading="lazy" alt=""></span><span class="nom">Press de Pecho Inclinado ISO<small>1,44 × 1,67 m · 139 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Press de Pecho Inclinado ISO" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Press de Pecho Inclinado ISO">+</button></span></span></li>
+          <li class="fila" data-id="maquina-smith"><span class="th"><img src="img/th-smith.webp" width="200" height="165" loading="lazy" alt=""></span><span class="nom">Máquina Smith<small>1,34 × 2,27 m · 215 kg</small></span><span class="der"><span class="pre">1.362 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Máquina Smith" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Máquina Smith">+</button></span></span></li>
+          <li class="fila" data-id="sentadilla-en-v-v-squat"><span class="th"><img src="img/th-vsquat.webp" width="200" height="165" loading="lazy" alt=""></span><span class="nom">Sentadilla en V (V-Squat)<small>2,43 × 1,45 m · 242 kg</small></span><span class="der"><span class="pre">1.300 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Sentadilla en V (V-Squat)" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Sentadilla en V (V-Squat)">+</button></span></span></li>
+          <li class="fila" data-id="prensa-de-piernas-a-45"><span class="th"><img src="img/th-prensa45.webp" width="200" height="150" loading="lazy" alt=""></span><span class="nom">Prensa de Piernas a 45°<small>1,78 × 2,06 m · 215 kg</small></span><span class="der"><span class="pre">1.386 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Prensa de Piernas a 45°" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Prensa de Piernas a 45°">+</button></span></span></li>
+          <li class="fila" data-id="jaca-maquina-de-sentadilla-hack-lineal"><span class="th"><img src="img/th-hack.webp" width="200" height="154" loading="lazy" alt=""></span><span class="nom">Sentadilla Hack Lineal<small>2,69 × 1,84 m · 371 kg</small></span><span class="der"><span class="pre">1.460 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Sentadilla Hack Lineal" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Sentadilla Hack Lineal">+</button></span></span></li>
+          <li class="fila" data-id="rack-de-potencia-olimpico-con-dominadas"><span class="th"><img src="img/th-rack.webp" width="200" height="168" loading="lazy" alt=""></span><span class="nom">Rack de Potencia Olímpico con Dominadas<small>1,78 × 1,36 m · 165 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Rack de Potencia Olímpico con Dominadas" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Rack de Potencia Olímpico con Dominadas">+</button></span></span></li>
+          <li class="fila" data-id="jalon-al-pecho-iso"><span class="th"><img src="img/th-jalon-iso.webp" width="200" height="169" loading="lazy" alt=""></span><span class="nom">Jalón al Pecho ISO<small>1,65 × 1,10 m · 145 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Jalón al Pecho ISO" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Jalón al Pecho ISO">+</button></span></span></li>
+          <li class="fila" data-id="press-de-hombros-iso"><span class="th"><img src="img/th-hombros-iso.webp" width="200" height="152" loading="lazy" alt=""></span><span class="nom">Press de Hombros ISO<small>1,50 × 1,25 m · 139 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Press de Hombros ISO" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Press de Hombros ISO">+</button></span></span></li>
+          <li class="fila" data-id="press-de-pecho-inclinado-iso"><span class="th"><img src="img/th-pecho-iso.webp" width="200" height="151" loading="lazy" alt=""></span><span class="nom">Press de Pecho Inclinado ISO<small>1,44 × 1,67 m · 139 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Press de Pecho Inclinado ISO" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Press de Pecho Inclinado ISO">+</button></span></span></li>
           </ul>
         </details>
         <details name="zonas"><summary>Musculación y poleas <small>6 máquinas</small></summary>
           <ul>
-          <li class="fila" data-id="jalon-polea"><span class="th"><img src="img/th-jalon-polea.webp" width="200" height="164" loading="lazy" alt=""></span><span class="nom">Jalón en polea alta<small>1,11 × 1,74 m · 152 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Jalón en polea alta" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Jalón en polea alta">+</button></span></span></li>
+          <li class="fila" data-id="jalon-en-polea-alta"><span class="th"><img src="img/th-jalon-polea.webp" width="200" height="164" loading="lazy" alt=""></span><span class="nom">Jalón en polea alta<small>1,11 × 1,74 m · 152 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Jalón en polea alta" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Jalón en polea alta">+</button></span></span></li>
           <li class="fila" data-id="remo-bajo"><span class="th"><img src="img/th-remo-bajo.webp" width="200" height="165" loading="lazy" alt=""></span><span class="nom">Remo bajo<small>1,32 × 1,25 m · 163 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Remo bajo" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Remo bajo">+</button></span></span></li>
-          <li class="fila" data-id="jalon-remo"><span class="th"><img src="img/th-jalon-remo.webp" width="200" height="160" loading="lazy" alt=""></span><span class="nom">Jalón al Pecho y Remo Largo<small>1,37 × 0,84 m · 175 kg</small></span><span class="der"><span class="pre">1.395 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Jalón al Pecho y Remo Largo" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Jalón al Pecho y Remo Largo">+</button></span></span></li>
-          <li class="fila" data-id="multi-hip"><span class="th"><img src="img/th-multi-hip.webp" width="200" height="157" loading="lazy" alt=""></span><span class="nom">Multi Cadera (Multi Hip)<small>1,65 × 0,99 m · 195 kg</small></span><span class="der"><span class="pre">1.287 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Multi Cadera (Multi Hip)" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Multi Cadera (Multi Hip)">+</button></span></span></li>
-          <li class="fila" data-id="curl-femoral"><span class="th"><img src="img/th-curl-femoral.webp" width="200" height="149" loading="lazy" alt=""></span><span class="nom">Curl Femoral de Pie<small>1,36 × 1,06 m · 110 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Curl Femoral de Pie" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Curl Femoral de Pie">+</button></span></span></li>
-          <li class="fila" data-id="ext-piernas"><span class="th"><img src="img/th-ext-piernas.webp" width="200" height="156" loading="lazy" alt=""></span><span class="nom">Extensión de Piernas ISO<small>1,43 × 1,48 m · 126 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Extensión de Piernas ISO" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Extensión de Piernas ISO">+</button></span></span></li>
+          <li class="fila" data-id="jalon-al-pecho-y-remo-largo"><span class="th"><img src="img/th-jalon-remo.webp" width="200" height="160" loading="lazy" alt=""></span><span class="nom">Jalón al Pecho y Remo Largo<small>1,37 × 0,84 m · 175 kg</small></span><span class="der"><span class="pre">1.395 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Jalón al Pecho y Remo Largo" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Jalón al Pecho y Remo Largo">+</button></span></span></li>
+          <li class="fila" data-id="multi-cadera-multi-hip"><span class="th"><img src="img/th-multi-hip.webp" width="200" height="157" loading="lazy" alt=""></span><span class="nom">Multi Cadera (Multi Hip)<small>1,65 × 0,99 m · 195 kg</small></span><span class="der"><span class="pre">1.287 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Multi Cadera (Multi Hip)" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Multi Cadera (Multi Hip)">+</button></span></span></li>
+          <li class="fila" data-id="curl-femoral-de-pie"><span class="th"><img src="img/th-curl-femoral.webp" width="200" height="149" loading="lazy" alt=""></span><span class="nom">Curl Femoral de Pie<small>1,36 × 1,06 m · 110 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Curl Femoral de Pie" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Curl Femoral de Pie">+</button></span></span></li>
+          <li class="fila" data-id="extension-de-piernas-iso"><span class="th"><img src="img/th-ext-piernas.webp" width="200" height="156" loading="lazy" alt=""></span><span class="nom">Extensión de Piernas ISO<small>1,43 × 1,48 m · 126 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Extensión de Piernas ISO" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Extensión de Piernas ISO">+</button></span></span></li>
           </ul>
         </details>
         <details name="zonas"><summary>Pierna y glúteo <small>2 máquinas</small></summary>
           <ul>
-          <li class="fila" data-id="aductores"><span class="th"><img src="img/th-aductores.webp" width="200" height="159" loading="lazy" alt=""></span><span class="nom">Máquina de Aductores<small>1,69 × 0,73 m · 139 kg</small></span><span class="der"><span class="pre">1.260 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Máquina de Aductores" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Máquina de Aductores">+</button></span></span></li>
-          <li class="fila" data-id="patada"><span class="th"><img src="img/th-patada.webp" width="200" height="164" loading="lazy" alt=""></span><span class="nom">Patada de glúteo<small>1,11 × 1,33 m · 135 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Patada de glúteo" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Patada de glúteo">+</button></span></span></li>
+          <li class="fila" data-id="maquina-de-aductores"><span class="th"><img src="img/th-aductores.webp" width="200" height="159" loading="lazy" alt=""></span><span class="nom">Máquina de Aductores<small>1,69 × 0,73 m · 139 kg</small></span><span class="der"><span class="pre">1.260 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Máquina de Aductores" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Máquina de Aductores">+</button></span></span></li>
+          <li class="fila" data-id="patada-de-gluteo"><span class="th"><img src="img/th-patada.webp" width="200" height="164" loading="lazy" alt=""></span><span class="nom">Patada de glúteo<small>1,11 × 1,33 m · 135 kg</small></span><span class="der"><span class="pre">990 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Patada de glúteo" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Patada de glúteo">+</button></span></span></li>
           </ul>
         </details>
         <details name="zonas"><summary>Peso libre y bancos <small>5 máquinas</small></summary>
           <ul>
           <li class="fila" data-id="banco-plano"><span class="th"><img src="img/th-banco-plano.webp" width="200" height="157" loading="lazy" alt=""></span><span class="nom">Banco plano<small>1,27 × 0,47 m · 55 kg</small></span><span class="der"><span class="pre">386 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Banco plano" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Banco plano">+</button></span></span></li>
-          <li class="fila" data-id="banco-ajustable"><span class="th"><img src="img/th-banco-ajustable.webp" width="200" height="147" loading="lazy" alt=""></span><span class="nom">Banco de Pesas Ajustable<small>1,43 × 0,60 m · 48 kg</small></span><span class="der"><span class="pre">547 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Banco de Pesas Ajustable" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Banco de Pesas Ajustable">+</button></span></span></li>
-          <li class="fila" data-id="banco-militar"><span class="th"><img src="img/th-banco-militar.webp" width="200" height="166" loading="lazy" alt=""></span><span class="nom">Banco Militar Olímpico<small>1,76 × 1,21 m · 88 kg</small></span><span class="der"><span class="pre">920 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Banco Militar Olímpico" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Banco Militar Olímpico">+</button></span></span></li>
-          <li class="fila" data-id="soporte-discos"><span class="th"><img src="img/th-soporte-discos.webp" width="200" height="163" loading="lazy" alt=""></span><span class="nom">Soporte para Discos<small>0,71 × 0,61 m · 37 kg</small></span><span class="der"><span class="pre">245 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Soporte para Discos" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Soporte para Discos">+</button></span></span></li>
-          <li class="fila" data-id="dominadas"><span class="th"><img src="img/th-dominadas.webp" width="200" height="182" loading="lazy" alt=""></span><span class="nom">Estación de Dominadas y Fondos<small>1,22 × 1,07 m · 114 kg</small></span><span class="der"><span class="pre">687 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Estación de Dominadas y Fondos" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Estación de Dominadas y Fondos">+</button></span></span></li>
+          <li class="fila" data-id="banco-de-pesas-ajustable"><span class="th"><img src="img/th-banco-ajustable.webp" width="200" height="147" loading="lazy" alt=""></span><span class="nom">Banco de Pesas Ajustable<small>1,43 × 0,60 m · 48 kg</small></span><span class="der"><span class="pre">547 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Banco de Pesas Ajustable" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Banco de Pesas Ajustable">+</button></span></span></li>
+          <li class="fila" data-id="banco-militar-olimpico"><span class="th"><img src="img/th-banco-militar.webp" width="200" height="166" loading="lazy" alt=""></span><span class="nom">Banco Militar Olímpico<small>1,76 × 1,21 m · 88 kg</small></span><span class="der"><span class="pre">920 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Banco Militar Olímpico" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Banco Militar Olímpico">+</button></span></span></li>
+          <li class="fila" data-id="soporte-para-discos"><span class="th"><img src="img/th-soporte-discos.webp" width="200" height="163" loading="lazy" alt=""></span><span class="nom">Soporte para Discos<small>0,71 × 0,61 m · 37 kg</small></span><span class="der"><span class="pre">245 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Soporte para Discos" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Soporte para Discos">+</button></span></span></li>
+          <li class="fila" data-id="estacion-de-dominadas-y-fondos"><span class="th"><img src="img/th-dominadas.webp" width="200" height="182" loading="lazy" alt=""></span><span class="nom">Estación de Dominadas y Fondos<small>1,22 × 1,07 m · 114 kg</small></span><span class="der"><span class="pre">687 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Estación de Dominadas y Fondos" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Estación de Dominadas y Fondos">+</button></span></span></li>
           </ul>
         </details>
         <details name="zonas"><summary>Cardio <small>2 máquinas</small></summary>
           <ul>
-          <li class="fila" data-id="cinta"><span class="th"><img src="img/th-cinta.webp" width="200" height="150" loading="lazy" alt=""></span><span class="nom">Cinta Comercial LED<small>2,10 × 0,96 m · 203 kg</small></span><span class="der"><span class="pre">1.143 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Cinta Comercial LED" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Cinta Comercial LED">+</button></span></span></li>
-          <li class="fila" data-id="cinta-tft"><span class="th"><img src="img/th-cinta-tft.webp" width="200" height="153" loading="lazy" alt=""></span><span class="nom">Cinta Comercial TFT con Pantalla<small>2,30 × 1,10 m · 260 kg</small></span><span class="der"><span class="pre">1.950 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Cinta Comercial TFT con Pantalla" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Cinta Comercial TFT con Pantalla">+</button></span></span></li>
+          <li class="fila" data-id="cinta-comercial-led"><span class="th"><img src="img/th-cinta.webp" width="200" height="150" loading="lazy" alt=""></span><span class="nom">Cinta Comercial LED<small>2,10 × 0,96 m · 203 kg</small></span><span class="der"><span class="pre">1.143 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Cinta Comercial LED" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Cinta Comercial LED">+</button></span></span></li>
+          <li class="fila" data-id="cinta-comercial-tft-con-pantalla"><span class="th"><img src="img/th-cinta-tft.webp" width="200" height="153" loading="lazy" alt=""></span><span class="nom">Cinta Comercial TFT con Pantalla<small>2,30 × 1,10 m · 260 kg</small></span><span class="der"><span class="pre">1.950 €</span><span class="paso"><button type="button" class="menos" aria-label="Quitar Cinta Comercial TFT con Pantalla" disabled>−</button><output>0</output><button type="button" class="mas" aria-label="Añadir Cinta Comercial TFT con Pantalla">+</button></span></span></li>
           </ul>
         </details>
+        <p class="mas-tienda">¿Buscas otra? <a href="tienda/">Hay 163 en la tienda</a>: añádela desde su ficha y aparecerá aquí.</p>
       </div>
       <div class="resumen" aria-live="polite">
         <div class="cifras">
@@ -771,8 +816,9 @@ html:not(.js) .paso{display:none}
   </div>
 </footer>
 
-<script type="application/json" id="datos-maquinas">[{"id":"smith","n":"Máquina Smith","c":"Smith","precio":1362,"kg":215,"a":1340,"b":2266},{"id":"vsquat","n":"Sentadilla en V (V-Squat)","c":"V-Squat","precio":1300,"kg":242,"a":2430,"b":1450},{"id":"prensa45","n":"Prensa de Piernas a 45°","c":"Prensa 45°","precio":1386,"kg":215,"a":1780,"b":2060},{"id":"hack","n":"Sentadilla Hack Lineal","c":"Hack lineal","precio":1460,"kg":371,"a":2693,"b":1844},{"id":"rack","n":"Rack de Potencia Olímpico con Dominadas","c":"Rack","precio":990,"kg":165,"a":1785,"b":1365},{"id":"jalon-iso","n":"Jalón al Pecho ISO","c":"Jalón ISO","precio":990,"kg":145,"a":1650,"b":1100},{"id":"hombros-iso","n":"Press de Hombros ISO","c":"Hombros ISO","precio":990,"kg":139,"a":1500,"b":1250},{"id":"pecho-iso","n":"Press de Pecho Inclinado ISO","c":"Pecho incl. ISO","precio":990,"kg":139,"a":1435,"b":1666},{"id":"jalon-polea","n":"Jalón en polea alta","c":"Jalón polea","precio":990,"kg":152,"a":1110,"b":1740},{"id":"remo-bajo","n":"Remo bajo","c":"Remo bajo","precio":990,"kg":163,"a":1320,"b":1250},{"id":"jalon-remo","n":"Jalón al Pecho y Remo Largo","c":"Jalón y remo","precio":1395,"kg":175,"a":1370,"b":840},{"id":"multi-hip","n":"Multi Cadera (Multi Hip)","c":"Multi Hip","precio":1287,"kg":195,"a":1650,"b":990},{"id":"curl-femoral","n":"Curl Femoral de Pie","c":"Curl femoral","precio":990,"kg":110,"a":1360,"b":1060},{"id":"ext-piernas","n":"Extensión de Piernas ISO","c":"Ext. piernas","precio":990,"kg":126,"a":1433,"b":1477},{"id":"aductores","n":"Máquina de Aductores","c":"Aductores","precio":1260,"kg":139,"a":1690,"b":730},{"id":"patada","n":"Patada de glúteo","c":"Patada glúteo","precio":990,"kg":135,"a":1115,"b":1330},{"id":"banco-plano","n":"Banco plano","c":"Banco plano","precio":386,"kg":55,"a":1270,"b":470},{"id":"banco-ajustable","n":"Banco de Pesas Ajustable","c":"Banco ajust.","precio":547,"kg":48,"a":1430,"b":600},{"id":"banco-militar","n":"Banco Militar Olímpico","c":"Banco militar","precio":920,"kg":88,"a":1763,"b":1210},{"id":"soporte-discos","n":"Soporte para Discos","c":"Discos","precio":245,"kg":37,"a":710,"b":610},{"id":"dominadas","n":"Estación de Dominadas y Fondos","c":"Dominadas","precio":687,"kg":114,"a":1220,"b":1070},{"id":"cinta","n":"Cinta Comercial LED","c":"Cinta","precio":1143,"kg":203,"a":2100,"b":960},{"id":"cinta-tft","n":"Cinta Comercial TFT con Pantalla","c":"Cinta TFT","precio":1950,"kg":260,"a":2300,"b":1100}]</script>
+<script type="application/json" id="datos-maquinas">[{"id":"maquina-smith","n":"Máquina Smith","c":"Smith","precio":1362,"kg":215,"a":1340,"b":2266},{"id":"sentadilla-en-v-v-squat","n":"Sentadilla en V (V-Squat)","c":"V-Squat","precio":1300,"kg":242,"a":2430,"b":1450},{"id":"prensa-de-piernas-a-45","n":"Prensa de Piernas a 45°","c":"Prensa 45°","precio":1386,"kg":215,"a":1780,"b":2060},{"id":"jaca-maquina-de-sentadilla-hack-lineal","n":"Sentadilla Hack Lineal","c":"Hack lineal","precio":1460,"kg":371,"a":2693,"b":1844},{"id":"rack-de-potencia-olimpico-con-dominadas","n":"Rack de Potencia Olímpico con Dominadas","c":"Rack","precio":990,"kg":165,"a":1785,"b":1365},{"id":"jalon-al-pecho-iso","n":"Jalón al Pecho ISO","c":"Jalón ISO","precio":990,"kg":145,"a":1650,"b":1100},{"id":"press-de-hombros-iso","n":"Press de Hombros ISO","c":"Hombros ISO","precio":990,"kg":139,"a":1500,"b":1250},{"id":"press-de-pecho-inclinado-iso","n":"Press de Pecho Inclinado ISO","c":"Pecho incl. ISO","precio":990,"kg":139,"a":1435,"b":1666},{"id":"jalon-en-polea-alta","n":"Jalón en polea alta","c":"Jalón polea","precio":990,"kg":152,"a":1110,"b":1740},{"id":"remo-bajo","n":"Remo bajo","c":"Remo bajo","precio":990,"kg":163,"a":1320,"b":1250},{"id":"jalon-al-pecho-y-remo-largo","n":"Jalón al Pecho y Remo Largo","c":"Jalón y remo","precio":1395,"kg":175,"a":1370,"b":840},{"id":"multi-cadera-multi-hip","n":"Multi Cadera (Multi Hip)","c":"Multi Hip","precio":1287,"kg":195,"a":1650,"b":990},{"id":"curl-femoral-de-pie","n":"Curl Femoral de Pie","c":"Curl femoral","precio":990,"kg":110,"a":1360,"b":1060},{"id":"extension-de-piernas-iso","n":"Extensión de Piernas ISO","c":"Ext. piernas","precio":990,"kg":126,"a":1433,"b":1477},{"id":"maquina-de-aductores","n":"Máquina de Aductores","c":"Aductores","precio":1260,"kg":139,"a":1690,"b":730},{"id":"patada-de-gluteo","n":"Patada de glúteo","c":"Patada glúteo","precio":990,"kg":135,"a":1115,"b":1330},{"id":"banco-plano","n":"Banco plano","c":"Banco plano","precio":386,"kg":55,"a":1270,"b":470},{"id":"banco-de-pesas-ajustable","n":"Banco de Pesas Ajustable","c":"Banco ajust.","precio":547,"kg":48,"a":1430,"b":600},{"id":"banco-militar-olimpico","n":"Banco Militar Olímpico","c":"Banco militar","precio":920,"kg":88,"a":1763,"b":1210},{"id":"soporte-para-discos","n":"Soporte para Discos","c":"Discos","precio":245,"kg":37,"a":710,"b":610},{"id":"estacion-de-dominadas-y-fondos","n":"Estación de Dominadas y Fondos","c":"Dominadas","precio":687,"kg":114,"a":1220,"b":1070},{"id":"cinta-comercial-led","n":"Cinta Comercial LED","c":"Cinta","precio":1143,"kg":203,"a":2100,"b":960},{"id":"cinta-comercial-tft-con-pantalla","n":"Cinta Comercial TFT con Pantalla","c":"Cinta TFT","precio":1950,"kg":260,"a":2300,"b":1100}]</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="js/presupuesto.js" defer></script>
 <script>
 addEventListener('DOMContentLoaded', () => {
   const raiz = document.documentElement;
@@ -895,23 +941,49 @@ addEventListener('DOMContentLoaded', () => {
   }
   marca();
 
-  /* 4 · Monta tu sala: el plano a escala con las medidas de cada ficha. */
+  /* 4 · Monta tu sala: el plano a escala. Lee y escribe el MISMO presupuesto que la tienda (js/presupuesto.js):
+         lo que añades en una ficha sale aquí, y lo que pones aquí va al presupuesto. */
   const M = JSON.parse($('#datos-maquinas').textContent);
   const porId = Object.fromEntries(M.map((m) => [m.id, m]));
-  const EJEMPLO = { rack: 1, smith: 1, prensa45: 1, hack: 1, 'jalon-polea': 1, 'remo-bajo': 1, 'hombros-iso': 1, 'pecho-iso': 1,
-    'ext-piernas': 1, 'curl-femoral': 1, patada: 1, aductores: 1, 'banco-ajustable': 2, 'soporte-discos': 1, cinta: 1 };
-  // Arranca con un ejemplo hecho con su catálogo (15.870 € en 150 m², en línea con su «desde 15.000 €»): un plano vacío no vende.
-  const sala = { largo: 15, ancho: 10, n: { ...EJEMPLO }, ejemplo: true };
-  try { const g = JSON.parse(localStorage.getItem('wf-sala') || 'null'); if (g && g.n) Object.assign(sala, g); } catch (e) {}
-  const svg = $('#plano-svg'), rL = $('#largo'), rA = $('#ancho'), enviar = $('#enviar-sala'), chip = $('#chip-ejemplo');
-  rL.value = sala.largo; rA.value = sala.ancho;
-  let antes = new Map(), discosMini = 0, pintado = false;
+  const CURADAS = new Set(M.map((m) => m.id));
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  // Arranca con un ejemplo hecho con su catálogo (15.870 € en 150 m², en línea con su «desde 15.000 €»): un plano vacío
+  // no vende. El ejemplo se VE, pero no entra en el presupuesto hasta que lo tocas.
+  const EJEMPLO = {"rack-de-potencia-olimpico-con-dominadas": 1, "maquina-smith": 1, "prensa-de-piernas-a-45": 1, "jaca-maquina-de-sentadilla-hack-lineal": 1, "jalon-en-polea-alta": 1, "remo-bajo": 1, "press-de-hombros-iso": 1, "press-de-pecho-inclinado-iso": 1, "extension-de-piernas-iso": 1, "curl-femoral-de-pie": 1, "patada-de-gluteo": 1, "maquina-de-aductores": 1, "banco-de-pesas-ajustable": 2, "soporte-para-discos": 1, "cinta-comercial-led": 1};
+  const W = window.WF || (() => { // sin js/presupuesto.js el taller funciona igual, solo en esta página
+    const s = { largo: 15, ancho: 10, n: {}, ejemplo: true, salaTocada: false }, o = new Set();
+    return {
+      estado: () => s, oye: (f) => o.add(f), catalogo: () => Promise.reject(new Error('sin catálogo')),
+      cambia(id, d, org) { s.ejemplo = false; const q = Math.max(0, Math.min(9, (s.n[id] || 0) + d)); if (q) s.n[id] = q; else delete s.n[id]; o.forEach((f) => f(s, org)); return q; },
+      pon(c, org) { Object.assign(s, c); o.forEach((f) => f(s, org)); },
+    };
+  })();
+  const sala = W.estado;
+  const vista = () => (sala().ejemplo ? EJEMPLO : sala().n);
+  const svg = $('#plano-svg'), rL = $('#largo'), rA = $('#ancho'), enviar = $('#enviar-sala'), chip = $('#chip-ejemplo'), extra = $('#grupo-extra');
+  rL.value = sala().largo; rA.value = sala().ancho;
+  let antes = new Map(), discosMini = 0, pintado = false, catalogoPedido = false;
+
+  // Las máquinas que llegan desde la tienda traen sus medidas y su precio en datos/catalogo.json.
+  function asegura() {
+    if (catalogoPedido || !Object.keys(vista()).some((id) => !porId[id])) return;
+    catalogoPedido = true;
+    W.catalogo().then((cat) => {
+      Object.values(cat).forEach((p) => { if (!porId[p.slug]) porId[p.slug] = { id: p.slug, n: p.n, c: p.c, precio: p.p, kg: p.kg, a: p.a, b: p.b }; });
+      pinta();
+    }).catch(() => {});
+  }
 
   function colocar() {
-    const piezas = [];
-    Object.entries(sala.n).forEach(([id, q]) => { for (let k = 0; k < q; k++) if (porId[id]) piezas.push({ m: porId[id], key: `${id}#${k}` }); });
+    const piezas = [], sinMedidas = [];
+    Object.entries(vista()).forEach(([id, q]) => {
+      const m = porId[id];
+      if (!m) return;
+      if (!m.a || !m.b) { sinMedidas.push(m); return; }
+      for (let k = 0; k < q; k++) piezas.push({ m, key: `${id}#${k}` });
+    });
     piezas.sort((p, q) => Math.max(q.m.a, q.m.b) - Math.max(p.m.a, p.m.b) || (p.key < q.key ? -1 : 1));
-    const L = sala.largo, A = sala.ancho, paso = .8, borde = .5;
+    const L = sala().largo, A = sala().ancho, paso = .8, borde = .5;
     let x = borde, y = borde, fila = 0;
     const puestos = [], fuera = [];
     for (const p of piezas) {
@@ -922,14 +994,16 @@ addEventListener('DOMContentLoaded', () => {
       puestos.push({ ...p, x, y, w, d });
       x += w + paso; fila = Math.max(fila, d);
     }
-    return { puestos, fuera };
+    return { puestos, fuera, sinMedidas };
   }
 
   function pinta(sinAnim) {
     pintado = true;
-    const L = sala.largo, A = sala.ancho, U = 100;
+    asegura();
+    const s = sala(), L = s.largo, A = s.ancho, U = 100, v = vista();
+    rL.value = L; rA.value = A;
     $('#v-largo').textContent = `${L} m`; $('#v-ancho').textContent = `${A} m`; $('#v-area').textContent = `${L * A} m²`;
-    const { puestos, fuera } = colocar();
+    const { puestos, fuera, sinMedidas } = colocar();
     const vbW = L * U + 130, pxU = (svg.clientWidth || 700) / vbW, fs = Math.max(30, 11.5 / pxU);
     let h = `<defs><pattern id="caucho-p" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#1E1A1A"/><circle cx="7" cy="9" r="2" fill="#2d2727"/><circle cx="27" cy="31" r="2.4" fill="#2a2424"/><circle cx="31" cy="12" r="1.5" fill="#332c2c"/></pattern></defs>`;
     h += `<rect width="${L * U}" height="${A * U}" rx="10" fill="url(#caucho-p)" stroke="#F6F2EC" stroke-width="8"/>`;
@@ -944,8 +1018,8 @@ addEventListener('DOMContentLoaded', () => {
       let f = fs; const ancho = t.length * f * .5;
       if (ancho > w - 18) f = (w - 18) / (t.length * .5);
       if (f > d - 16) f = d - 16;
-      const txt = f >= fs * .5 ? `<text x="${w / 2}" y="${d / 2}" dy=".36em" text-anchor="middle" font-size="${f.toFixed(1)}">${t}</text>` : '';
-      h += `<g class="pieza" data-k="${p.key}" transform="translate(${(p.x * U).toFixed(1)} ${(p.y * U).toFixed(1)})"><title>${p.m.n} · ${coma(p.m.a / 1000, 2)} × ${coma(p.m.b / 1000, 2)} m</title><rect width="${w.toFixed(1)}" height="${d.toFixed(1)}" rx="8"/>${txt}</g>`;
+      const txt = f >= fs * .5 ? `<text x="${w / 2}" y="${d / 2}" dy=".36em" text-anchor="middle" font-size="${f.toFixed(1)}">${esc(t)}</text>` : '';
+      h += `<g class="pieza" data-k="${p.key}" transform="translate(${(p.x * U).toFixed(1)} ${(p.y * U).toFixed(1)})"><title>${esc(p.m.n)} · ${coma(p.m.a / 1000, 2)} × ${coma(p.m.b / 1000, 2)} m</title><rect width="${w.toFixed(1)}" height="${d.toFixed(1)}" rx="8"/>${txt}</g>`;
     });
     if (!puestos.length) h += `<text class="vacio" x="${L * U / 2}" y="${A * U / 2}" text-anchor="middle" font-size="${(fs * 1.05).toFixed(1)}">Añade máquinas: aparecen aquí, a escala</text>`;
     svg.setAttribute('viewBox', `-100 -110 ${vbW} ${A * U + 140}`);
@@ -961,28 +1035,46 @@ addEventListener('DOMContentLoaded', () => {
     });
     antes = ahora;
 
-    const elegidas = Object.entries(sala.n).map(([id, q]) => ({ m: porId[id], q })).filter((o) => o.m);
-    const n = elegidas.reduce((s, o) => s + o.q, 0);
-    const eur = elegidas.reduce((s, o) => s + o.q * o.m.precio, 0);
-    const kg = elegidas.reduce((s, o) => s + o.q * (o.m.kg || 0), 0);
-    const m2 = elegidas.reduce((s, o) => s + o.q * o.m.a * o.m.b / 1e6, 0);
+    const elegidas = Object.entries(v).map(([id, q]) => ({ m: porId[id], q })).filter((o) => o.m);
+    const n = elegidas.reduce((t, o) => t + o.q, 0);
+    const eur = elegidas.reduce((t, o) => t + o.q * (o.m.precio || 0), 0);
+    const kg = elegidas.reduce((t, o) => t + o.q * (o.m.kg || 0), 0);
+    const m2 = elegidas.reduce((t, o) => t + (o.m.a && o.m.b ? o.q * o.m.a * o.m.b / 1e6 : 0), 0);
     $('#r-eur').textContent = `${miles(eur)} €`; $('#r-n').textContent = n;
     $('#r-m2').textContent = `${coma(m2)} m²`; $('#r-de').textContent = `de suelo, de ${L * A} m²`;
     $('#r-kg').textContent = `${miles(kg)} kg`;
-    $('#aviso').textContent = fuera.length ? `No caben ${fuera.length === 1 ? 'una' : fuera.length}: ${[...new Set(fuera.map((p) => p.m.c))].join(', ')}. Agranda la sala o quita alguna.` : '';
+    const avisos = [];
+    if (fuera.length) avisos.push(`No caben ${fuera.length === 1 ? 'una' : fuera.length}: ${[...new Set(fuera.map((p) => p.m.c))].join(', ')}. Agranda la sala o quita alguna.`);
+    if (sinMedidas.length) avisos.push(`Sin medidas en su ficha (no salen en el plano): ${sinMedidas.map((m) => m.c).join(', ')}.`);
+    $('#aviso').textContent = avisos.join(' ');
     svg.setAttribute('aria-label', n ? `Plano de ${L} por ${A} metros con ${n} máquinas${fuera.length ? `; ${fuera.length} no caben` : ''}` : `Plano vacío de ${L} por ${A} metros`);
-    $$('.fila').forEach((f) => {
-      const q = sala.n[f.dataset.id] || 0;
+    $$('.lista .fila[data-id]').forEach((f) => {
+      if (!CURADAS.has(f.dataset.id)) return;
+      const q = v[f.dataset.id] || 0;
       f.querySelector('output').textContent = q;
       f.querySelector('.menos').disabled = !q;
       f.classList.toggle('puesta', q > 0);
     });
-    const lineas = elegidas.map((o) => `- ${o.q} × ${o.m.n} (${miles(o.m.precio)} €)`).join('\n');
+    extras(v);
+    const lineas = elegidas.map((o) => `- ${o.q} × ${o.m.n} (${o.m.precio ? `${miles(o.m.precio)} €` : 'precio a consultar'})`).join('\n');
     enviar.href = WA + encodeURIComponent(n
       ? `Hola Miguel, quiero montar una sala de ${L} × ${A} m (${L * A} m²) con:\n${lineas}\nTotal orientativo: ${miles(eur)} € IVA incluido. ¿Me preparas presupuesto con transporte y montaje?`
       : 'Hola Miguel, quiero montar una sala. ¿Me ayudas a elegir las máquinas?');
     cargaMini(n, sinAnim);
-    chip.hidden = !sala.ejemplo;
+    chip.hidden = !s.ejemplo;
+  }
+
+  // Las que llegan desde la tienda tienen su propio grupo en la lista, con su fila.
+  function extras(v) {
+    const ids = Object.keys(v).filter((id) => !CURADAS.has(id) && porId[id]);
+    extra.hidden = !ids.length;
+    if (!ids.length) return;
+    extra.querySelector('summary small').textContent = `${ids.length} ${ids.length === 1 ? 'máquina' : 'máquinas'}`;
+    extra.querySelector('ul').innerHTML = ids.map((id) => {
+      const m = porId[id];
+      const dat = `${m.a ? `${coma(m.a / 1000, 2)} × ${coma(m.b / 1000, 2)} m` : 'sin medidas'}${m.kg ? ` · ${m.kg} kg` : ''}`;
+      return `<li class="fila puesta" data-id="${esc(id)}"><span class="th"><img src="img/p/${esc(id)}.webp" width="480" height="380" loading="lazy" alt=""></span><span class="nom"><a href="producto/${esc(id)}/">${esc(m.n)}</a><small>${dat}</small></span><span class="der"><span class="pre">${m.precio ? `${miles(m.precio)} €` : 'a consultar'}</span><span class="paso"><button type="button" class="menos" aria-label="Quitar ${esc(m.n)}">−</button><output>${v[id]}</output><button type="button" class="mas" aria-label="Añadir ${esc(m.n)}">+</button></span></span></li>`;
+    }).join('');
   }
 
   // La sala se carga como una barra: un disco por máquina, repartidos a los dos lados.
@@ -999,23 +1091,25 @@ addEventListener('DOMContentLoaded', () => {
     discosMini = k;
   }
 
-  const guarda = () => { try { localStorage.setItem('wf-sala', JSON.stringify(sala)); } catch (e) {} };
+  // Tocar el ejemplo lo convierte en tuyo; desde el escaparate o la tienda se empieza de cero.
   function cambia(id, d) {
-    const q = Math.max(0, Math.min(9, (sala.n[id] || 0) + d));
-    if (q) sala.n[id] = q; else delete sala.n[id];
-    sala.ejemplo = false; pinta(); guarda();
+    if (sala().ejemplo) W.pon({ n: { ...EJEMPLO }, ejemplo: false }, 'sala');
+    W.cambia(id, d, 'sala');
   }
-  $$('.fila').forEach((f) => {
-    f.querySelector('.menos').addEventListener('click', () => cambia(f.dataset.id, -1));
-    f.querySelector('.mas').addEventListener('click', () => cambia(f.dataset.id, 1));
+  W.oye(() => { if (pintado) pinta(); });
+  $('.lista').addEventListener('click', (e) => {
+    const b = e.target.closest('.paso button');
+    if (b) cambia(b.closest('.fila').dataset.id, b.classList.contains('mas') ? 1 : -1);
   });
-  const medidas = () => { sala.largo = +rL.value; sala.ancho = +rA.value; sala.ejemplo = false; pinta(); guarda(); };
+  const medidas = () => W.pon({ largo: +rL.value, ancho: +rA.value, salaTocada: true }, 'sala');
   rL.addEventListener('input', medidas); rA.addEventListener('input', medidas);
-  $('#ejemplo').addEventListener('click', () => { sala.largo = 15; sala.ancho = 10; sala.n = { ...EJEMPLO }; sala.ejemplo = true; rL.value = 15; rA.value = 10; antes = new Map(); pinta(); guarda(); });
-  $('#vaciar').addEventListener('click', () => { sala.n = {}; sala.ejemplo = false; pinta(); guarda(); });
-  $$('[data-anadir]').forEach((b) => b.addEventListener('click', () => {
-    const id = b.dataset.anadir, fila = $(`.fila[data-id="${id}"]`);
-    cambia(id, 1);
+  $('#ejemplo').addEventListener('click', () => { antes = new Map(); W.pon({ largo: 15, ancho: 10, n: { ...EJEMPLO }, ejemplo: false, salaTocada: true }, 'sala'); });
+  $('#vaciar').addEventListener('click', () => W.pon({ n: {}, ejemplo: false }, 'sala'));
+  $$('[data-anadir-sala]').forEach((b) => b.addEventListener('click', () => {
+    const id = b.dataset.anadirSala, fila = $(`.fila[data-id="${id}"]`);
+    if (sala().ejemplo) W.pon({ n: {}, ejemplo: false }, 'sala');
+    W.cambia(id, 1, 'sala');
+    if (!pintado) pinta();
     fila.closest('details').open = true;
     $('#monta').scrollIntoView({ behavior: quieto ? 'auto' : 'smooth' });
     fila.classList.add('recien'); setTimeout(() => fila.classList.remove('recien'), 1800);
