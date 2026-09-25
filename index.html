@@ -878,8 +878,8 @@ addEventListener('DOMContentLoaded', () => {
     alVer('.contacto', $$('.fachada .resena'));
   }
   // Las caras renderizadas de los discos (44 KB) se piden al acercarse a su sección, como una imagen lazy:
-  // no compiten con la portada. Pedirlas en «load» no basta: Lighthouse simula esa petición al principio
-  // y la portada perdía 0,2 s de FCP. Hasta entonces (o sin JS) se ve el disco dibujado, con el mismo trazado.
+  // la sección queda a 380-490 px bajo el pliegue, así que quien no baja no las descarga. Hasta entonces
+  // (o sin JS) se ve el disco dibujado, con el mismo trazado.
   const caras = () => $$('.discos image[data-href]').forEach((im) => im.setAttribute('href', im.dataset.href));
   if ('IntersectionObserver' in window) new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { caras(); o.disconnect(); } }, { rootMargin: '300px 0px' }).observe($('.discos'));
   else caras();
